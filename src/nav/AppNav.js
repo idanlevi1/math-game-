@@ -1,20 +1,14 @@
 import {createStackNavigator } from 'react-navigation'
-//import  { createStackNavigator }  from 'react-navigation';
 
 import Home from '../views/Home/Home'
 
 const HomeRoute = createStackNavigator(
     {
-        Home:{
-        screen: Home,
-        },
-      
+        Home:{screen: Home},
     },
     {
         headerMode: 'none',
-        navigationOptions: {
-            headerVisible: false,
-            }
+        navigationOptions: {headerVisible: false}
     }
 );
 

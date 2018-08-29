@@ -12,7 +12,7 @@ export default class Home extends React.Component {
       <View>
         <View style={styles.statusBar} />        
         <View style={styles.container}>
-          <Text style={whiteText}>Home Screen</Text>
+          <Text style={whiteText}>Home Screen...</Text>
         </View>
       </View>
     );
