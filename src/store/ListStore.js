@@ -7,6 +7,7 @@ class ObservableStore {
     coins:0,
     stars:0,
   }
+  
   @observable sound = true
 
   addStars(num) {

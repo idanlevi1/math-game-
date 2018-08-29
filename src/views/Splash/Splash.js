@@ -7,13 +7,15 @@ import { observer } from "mobx-react";
 class Splash extends Component {
   constructor(props) {
     super(props);
-    this.state = { splash: true };
+    this.state = { splash: true};
   }
 
   async componentDidMount() {
     const {user} = this.props.store
     let existResult = await this.props.store.checkExistUser(Expo.Constants.deviceId)
-    setTimeout(() => this.setState({ splash: false }), 2000);
+    let loadingTime = existResult ? 1000 : 2000
+    console.log("user:",user)
+    setTimeout(() => this.setState({ splash: false }), loadingTime);
   }
 
   render() {

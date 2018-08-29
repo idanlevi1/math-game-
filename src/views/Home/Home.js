@@ -7,7 +7,6 @@ const { width, height,  } = Dimensions.get('screen');
 
 export default class Home extends React.Component {
   render() {
-    console.log(Expo.Constants.deviceId)
     return (
       <View>
         <View style={styles.statusBar} />        
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     height: height-Constants.statusBarHeight,
   },
   statusBar: {
-    backgroundColor: '#FFCC00',
+    backgroundColor: '#FB1',
     height: Constants.statusBarHeight 
   },
 });

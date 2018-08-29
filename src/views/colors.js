@@ -1,6 +1,6 @@
 export const appColors = {
-    mainColor:'#146EB4',
-    secondaryColor:'#F2552C'
+    mainColor:'#00d8d6',
+    secondaryColor:'#ffa801'
 }
 
 export const whiteText = {
