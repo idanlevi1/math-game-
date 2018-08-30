@@ -21,12 +21,15 @@
   },
   "dependencies": {
     "es6-symbol": "^3.1.1",
-    "expo": "29.0.0",
+    "expo": "^29.0.0",
     "firebase": "^5.4.1",
     "mobx": "^4.3.1",
     "mobx-react": "^5.1.0",
     "react": "16.3.1",
     "react-native": "~0.55.2",
+    "react-native-animatable": "^1.3.0",
+    "react-native-ionicons": "^0.2.2",
+    "react-native-simple-toast": "0.0.8",
     "react-navigation": "^2.12.1"
   }
 }

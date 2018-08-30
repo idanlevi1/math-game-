@@ -1,7 +1,7 @@
-import {observable} from 'mobx'
+import {observable, action, computed} from 'mobx'
 import * as firebase from 'firebase';
 
-class ObservableStore {
+export class userStore {
   @observable user = {
     appId:null,
     coins:0,
@@ -10,19 +10,23 @@ class ObservableStore {
   
   @observable sound = true
 
-  addStars(num) {
+  @computed get getUser(){
+    return this.user
+  }
+
+  @action addStars =(num)=> {
       this.user.stars = this.user.stars + num
   }
 
-  addCoins(num) {
+  @action addCoins = (num) => {
     this.user.coins = this.user.coins + num
   }
 
-  switchSound() {
+  @action switchSound =()=> {
     this.sound = !this.sound
   }
 
-  async checkExistUser(appId){
+  @action async checkExistUser(appId){
     let ref = firebase.database().ref('users')
     let exist = await ref.orderByChild('appId')
     .equalTo(appId).once('value' , 
@@ -40,8 +44,6 @@ class ObservableStore {
     })
     return exist 
   }
-
 }
 
-const store = new ObservableStore()
-export default store
+export default new userStore

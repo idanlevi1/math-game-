@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Splash from '../views/Splash/Splash'
 import initdb from './initDB'
-import store from '../store/ListStore'
+import userStore from '../store/userStore'
+import { Provider } from 'mobx-react';
 
 export default class GameApp extends Component {
     componentWillMount() {
@@ -10,7 +11,9 @@ export default class GameApp extends Component {
 
     render() {
       return (
-        <Splash store={store}/>
+        <Provider userStore={userStore}>
+          <Splash />
+        </Provider>
       );
     }
   }
