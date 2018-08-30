@@ -3,9 +3,9 @@ import { appColors } from "../colors";
 import { Constants } from "expo";
 const { width, height } = Dimensions.get("screen");
 
-export default (styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   container: {
-    backgroundColor: appColors.mainColor,
+    backgroundColor: '#000',
     alignItems: "center",
     justifyContent: "center",
     height: height - Constants.statusBarHeight
@@ -60,4 +60,4 @@ export default (styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: appColors.secondaryColor
   }
-}));
+});

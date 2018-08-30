@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { appColors } from '../colors';
-import { observer,inject } from 'mobx-react';
 import * as Animatable from 'react-native-animatable'
 import Toast from 'react-native-simple-toast';
 import Stars from '../CoinsStars/Stars'
@@ -11,20 +10,10 @@ import Coins from '../CoinsStars/Coins'
 const logoImg = require('../../images/Logo.png');
 const wallBackground = require('../../images/wall.jpg')
 
-@inject('userStore')
-@observer
+
 class HomeView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  switchSound() {
-    this.props.userStore.switchSound();
-  }
-
   render() {
-    const {coins,stars} = this.props.userStore.getUser
+    const {coins,stars,sound} = this.props
     return (
       <View style={styles.container}>
         <Image
@@ -49,12 +38,12 @@ class HomeView extends Component {
             </View>
         </TouchableOpacity>
         <View style={[styles.rowIcons,{paddingTop:25}]}>
-            <TouchableOpacity underlayColor='#fff' onPress={async() => {this.soundRef.jello(1000); this.switchSound()}}>
+            <TouchableOpacity underlayColor='#fff' onPress={async() => {this.soundRef.jello(1000); this.props.switchSound()}}>
                 <Animatable.View 
                 style={styles.iconButton}
                 ref={(ref)=>{this.soundRef = ref}}
                 >
-                <Ionicons name={this.props.userStore.sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.secondaryColor}/>
+                <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.secondaryColor}/>
                 </Animatable.View>
             </TouchableOpacity>
             <TouchableOpacity underlayColor='#fff' onPress={()=>{Toast.show('Sorry, not available in this version');}} >
