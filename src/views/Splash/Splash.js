@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import SplashView from "./SplashView";
 import AppNav from "../../nav/AppNav";
-import { observer } from "mobx-react";
+import { observer, inject } from "mobx-react";
+import { Font } from 'expo';
 
+@inject('userStore')
 @observer
 class Splash extends Component {
   constructor(props) {
@@ -11,15 +13,18 @@ class Splash extends Component {
   }
 
   async componentDidMount() {
-    const {user} = this.props.store
-    let existResult = await this.props.store.checkExistUser(Expo.Constants.deviceId)
+    const {userStore} = this.props
+    let existResult = await userStore.checkExistUser(Expo.Constants.deviceId)
     let loadingTime = existResult ? 1000 : 2000
-    console.log("user:",user)
-    setTimeout(() => this.setState({ splash: false }), loadingTime);
+    console.log("user:",userStore.getUser)
+    await Font.loadAsync({
+      'Indie Flower': require('../../../assets/fonts/IndieFlower.ttf'),
+    });
+    setTimeout(() => this.setState({ splash: false }),1)//loadingTime);
   }
 
   render() {
-    return this.state.splash ? <SplashView /> : <AppNav />;
+    return this.state.splash ? <SplashView /> : <AppNav/>;
   }
 }
 
