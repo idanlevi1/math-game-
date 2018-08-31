@@ -33,7 +33,7 @@ export default styles = StyleSheet.create({
   rowIcons: {
     flexDirection: "row",
     alignSelf: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   iconButton: {
     backgroundColor: '#000',

@@ -6,6 +6,7 @@ import * as Animatable from 'react-native-animatable'
 import Toast from 'react-native-simple-toast';
 import Stars from '../CoinsStars/Stars'
 import Coins from '../CoinsStars/Coins'
+import styles from "./HomeStyle";
 
 const logoImg = require('../../images/Logo.png');
 const wallBackground = require('../../images/wall.jpg')
@@ -32,18 +33,26 @@ class HomeView extends Component {
             animation="pulse" easing="ease-out" iterationCount="infinite"
           />
         </View>
-        <TouchableOpacity onPress={()=>{}}>
+        <TouchableOpacity onPress={()=>{this.props.onPlay()}}>
             <View style={styles.playButton}>
                 <Text style={[styles.text,{fontSize: 50}]}>Play</Text>
             </View>
         </TouchableOpacity>
         <View style={[styles.rowIcons,{paddingTop:25}]}>
-            <TouchableOpacity underlayColor='#fff' onPress={async() => {this.soundRef.jello(1000); this.props.switchSound()}}>
+            <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.jello(1000); this.props.switchSound()}}>
                 <Animatable.View 
                 style={styles.iconButton}
                 ref={(ref)=>{this.soundRef = ref}}
                 >
                 <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.secondaryColor}/>
+                </Animatable.View>
+            </TouchableOpacity>
+            <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.jello(1000);}}>
+                <Animatable.View 
+                style={styles.iconButton}
+                ref={(ref)=>{this.store = ref}}
+                >
+                <Ionicons name={'ios-basket-outline'} size={40} color={appColors.secondaryColor}/>
                 </Animatable.View>
             </TouchableOpacity>
             <TouchableOpacity underlayColor='#fff' onPress={()=>{Toast.show('Sorry, not available in this version');}} >
