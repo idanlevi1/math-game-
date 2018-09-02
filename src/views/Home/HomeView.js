@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { appColors } from '../colors';
 import * as Animatable from 'react-native-animatable'
@@ -26,7 +26,7 @@ class HomeView extends Component {
                 <Coins coins={coins}/>
             </View>
             {/* LOGO */}
-            <View style={[styles.logoView,{paddingVertical:30}]}>
+            <View style={styles.logoView}>
                 <Animatable.Image
                     style={styles.logoImage}
                     resizeMode='contain'

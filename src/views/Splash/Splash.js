@@ -5,7 +5,9 @@ import { observer, inject } from "mobx-react";
 import { Font } from 'expo';
 
 @inject('userStore')
+@inject('levelsStore')
 @observer
+
 class Splash extends Component {
   constructor(props) {
     super(props);
@@ -13,14 +15,14 @@ class Splash extends Component {
   }
 
   async componentDidMount() {
-    const {userStore} = this.props
+    const {userStore,levelsStore} = this.props
     let existResult = await userStore.checkExistUser(Expo.Constants.deviceId)
     let loadingTime = existResult ? 1000 : 2000
-    console.log("user:",userStore.getUser)
+    await levelsStore.loadingLevels()
     await Font.loadAsync({
       'Indie Flower': require('../../../assets/fonts/IndieFlower.ttf'),
     });
-    setTimeout(() => this.setState({ splash: false }),1)//loadingTime);
+    setTimeout(() => this.setState({ splash: false }),loadingTime);
   }
 
   render() {

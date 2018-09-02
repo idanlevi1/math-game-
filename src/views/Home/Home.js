@@ -1,7 +1,5 @@
 import React from "react";
-import { View } from "react-native";
 import HomeView from "./HomeView";
-import styles from "./HomeStyle";
 import { observer,inject } from 'mobx-react';
 import LevelsMenu from '../LevelsMenu/LevelsMenu'
 

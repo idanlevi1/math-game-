@@ -5,7 +5,7 @@ export class userStore {
   @observable user = {
     appId:null,
     coins:0,
-    stars:0,
+    stars:0, 
   }
   
   @observable sound = true

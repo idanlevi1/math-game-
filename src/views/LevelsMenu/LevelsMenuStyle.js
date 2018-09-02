@@ -1,30 +1,31 @@
 import { Dimensions, StyleSheet } from "react-native";
-import { appColors } from "../colors";
-import { Constants } from "expo";
 const { width, height } = Dimensions.get("screen");
 
 export default styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#000',
-    alignItems: "center",
-    justifyContent: "center",
-    height: height,
-    opacity:0.6,
+  backgroundContainer:{
+    flex: 1,
+    width:null,
+    height:null,
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity:0.8,
   },
   levelsView: {
-    height: height / 2.5,
-    width: width / 1.5
-  },
-  backgroundImage: {
-    position: "absolute",
-    left: 0,
-    top: 0,
-    width: "100%",
-    height: "100%"
+    height: height * 0.7 ,
+    width: width * 0.85,
   },
   rowIcons: {
+    height: height *  0.3,
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "space-between"
   },
+  levelContainer:{
+    backgroundColor:'#fff',
+    height: height*0.5 ,
+    width: width*0.55 ,
+    borderWidth: 3,
+    margin:5,
+    opacity:0.9
+  }
 });
