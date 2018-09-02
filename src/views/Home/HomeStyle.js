@@ -1,18 +1,14 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { appColors } from "../colors";
-import { Constants } from "expo";
 const { width, height } = Dimensions.get("screen");
 
 export default styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#000',
-    alignItems: "center",
-    justifyContent: "center",
-    height: height - Constants.statusBarHeight
-  },
-  statusBar: {
-    backgroundColor: "#FB1",
-    height: Constants.statusBarHeight
+  backgroundContainer:{
+    flex: 1,
+    width:null,
+    height:null,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   logoView: {
     height: height / 2.5,
@@ -32,15 +28,15 @@ export default styles = StyleSheet.create({
   },
   rowIcons: {
     flexDirection: "row",
-    alignSelf: "center",
-    justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "center",
   },
   iconButton: {
     backgroundColor: '#000',
     borderRadius: 100,
     borderWidth: 1,
     borderColor: appColors.secondaryColor,
-    marginHorizontal: 50,
+    marginHorizontal: 15,
     paddingHorizontal: 11,
     paddingVertical: 7,
   },

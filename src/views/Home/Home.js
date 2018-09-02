@@ -22,8 +22,6 @@ export default class Home extends React.Component {
     const {coins,stars} = this.props.userStore.getUser
     return (
       !this.state.play ?
-      <View>
-        <View style={styles.statusBar} />
         <HomeView
         switchSound={this.switchSound}
         onPlay={this.onPlay}
@@ -31,7 +29,6 @@ export default class Home extends React.Component {
         stars={stars}
         sound={this.props.userStore.sound}
         />
-      </View>
       :
       <LevelsMenu/>
     );
