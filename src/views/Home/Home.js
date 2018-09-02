@@ -26,6 +26,7 @@ export default class Home extends React.Component {
         coins={coins}
         stars={stars}
         sound={this.props.userStore.sound}
+        navigation={this.props.navigation}
         />
       :
       <LevelsMenu/>

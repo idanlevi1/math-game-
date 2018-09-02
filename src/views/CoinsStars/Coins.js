@@ -8,7 +8,7 @@ export default Coins = (props) => {
     return ( 
         <View style={styles.card}>
             <Animatable.View animation="pulse" easing="ease-out" iterationCount="infinite">
-                <Ionicons name={'md-star'} size={30} color={'#FFFFFF'}/>
+                <Ionicons name={'logo-usd'} size={30} color={'#FFFFFF'}/>
             </Animatable.View>
             <Text style={styles.text}>Coins: {props.coins}</Text>
         </View>
