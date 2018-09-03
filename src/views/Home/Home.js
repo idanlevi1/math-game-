@@ -7,9 +7,23 @@ import { observer,inject } from 'mobx-react';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.audioPlayer = new Expo.Audio.Sound();
   }
-  switchSound = () => {
+
+  componentDidMount = async() => {
+    try {
+      await this.audioPlayer.unloadAsync()
+      await this.audioPlayer.loadAsync(require('../../../assets/audio/pb_sunset_love.mp3'));
+      await this.audioPlayer.setVolumeAsync(0.5)
+      await this.audioPlayer.playAsync();
+    } catch (err) {
+      console.warn("Couldn't Play audio", err)
+    }
+  };
+
+  switchSound = async() => {
     this.props.userStore.switchSound();
+    await this.props.userStore.sound ? this.audioPlayer.playAsync() : this.audioPlayer.pauseAsync()
   }
   onPlay = () => {
     this.props.navigation.navigate('LevelsMenu')
