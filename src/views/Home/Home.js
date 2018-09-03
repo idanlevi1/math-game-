@@ -16,6 +16,7 @@ export default class Home extends React.Component {
       await this.audioPlayer.loadAsync(require('../../../assets/audio/pb_sunset_love.mp3'));
       await this.audioPlayer.setVolumeAsync(0.5)
       await this.audioPlayer.playAsync();
+      await this.audioPlayer.setIsLoopingAsync(true)
     } catch (err) {
       console.warn("Couldn't Play audio", err)
     }
