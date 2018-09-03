@@ -13,6 +13,7 @@ class LevelsMenu extends Component {
         coins={coins} 
         stars={stars} 
         levels={this.props.levelsStore.getLevels}
+        navigation={this.props.navigation}
         />)
   }
 }

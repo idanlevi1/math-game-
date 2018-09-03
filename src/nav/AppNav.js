@@ -1,22 +1,15 @@
 import {createStackNavigator } from 'react-navigation'
-import Home from '../views/Home/Home'
-import LevelsMenu from '../views/LevelsMenu/LevelsMenu'
-import GameStore from '../views/gameStore/GameStore'
+import HomeScreen from '../views/Home/Home'
+import LevelsMenuScreen from '../views/LevelsMenu/LevelsMenu'
+import GameStoreScreen from '../views/gameStore/GameStore'
 
 const HomeRoute = createStackNavigator(
     {
-        Home: {screen: Home},
-        headerMode: 'none',
+        Home: HomeScreen,
+        LevelsMenu: LevelsMenuScreen,
+        GameStore: GameStoreScreen,
     },
-    {
-        LevelsMenu: {screen: LevelsMenu},
-        headerMode: 'none',
-    },
-    {
-        GameStore: {screen: GameStore},
-        headerMode: 'none',
-        routeName: 'GameStore'
-    },
+    {headerMode: 'none'}
 );
 
 export default HomeRoute;

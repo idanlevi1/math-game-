@@ -4,6 +4,7 @@ import Stars from '../CoinsStars/Stars'
 import Coins from '../CoinsStars/Coins'
 import styles from "./LevelsMenuStyle";
 import Level from './Level';
+import BackButton from '../buttons/BackButton'
 
 const wallBackground = require('../../images/wall.jpg')
 
@@ -17,10 +18,13 @@ class LevelsMenuView extends Component {
             <Stars stars={stars}/>
             <Coins coins={coins}/>
         </View>
-      <View style={[styles.levelsView,{paddingVertical:30}]}>
+      <View style={styles.levelsView}>
         <ScrollView horizontal>
           {levelsElements}
         </ScrollView>
+      </View>
+      <View style={styles.bottomLine}>
+        <BackButton navigation={this.props.navigation}/>
       </View>
       </ImageBackground>
     );

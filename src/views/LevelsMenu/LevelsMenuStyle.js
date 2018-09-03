@@ -11,14 +11,20 @@ export default styles = StyleSheet.create({
     opacity:0.8,
   },
   levelsView: {
-    height: height * 0.7 ,
+    height: height * 0.55 ,
     width: width * 0.85,
   },
   rowIcons: {
-    height: height *  0.3,
+    height: height *  0.25,
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "space-between"
+  },
+  bottomLine:{
+    flexDirection: "row",
+    alignSelf: "center",
+    justifyContent: "space-between",
+    margin: 10,
   },
   levelContainer:{
     backgroundColor:'#fff',
@@ -26,6 +32,6 @@ export default styles = StyleSheet.create({
     width: width*0.55 ,
     borderWidth: 3,
     margin:5,
-    opacity:0.9
+    opacity:0.8
   }
 });
