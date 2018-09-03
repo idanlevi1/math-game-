@@ -42,7 +42,7 @@ class HomeView extends Component {
             </TouchableOpacity>
             {/* Icons Row */}
             <View style={[styles.rowIcons,{paddingTop:25}]}>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.jello(1000); this.props.switchSound()}}>
+                <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.shake(400); this.props.switchSound()}}>
                     <Animatable.View 
                     style={styles.iconButton}
                     ref={(ref)=>{this.soundRef = ref}}
@@ -50,7 +50,7 @@ class HomeView extends Component {
                     <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.secondaryColor}/>
                     </Animatable.View>
                 </TouchableOpacity>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.jello(1000); this.props.navigation.navigate('GameStore')}}>
+                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.bounce(500); this.props.navigation.navigate('GameStore')}}>
                     <Animatable.View 
                     style={styles.iconButton}
                     ref={(ref)=>{this.store = ref}}

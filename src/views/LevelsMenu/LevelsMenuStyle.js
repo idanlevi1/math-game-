@@ -31,7 +31,14 @@ export default styles = StyleSheet.create({
     height: height*0.5 ,
     width: width*0.55 ,
     borderWidth: 3,
+    borderRadius: 10,
     margin:5,
-    opacity:0.8
-  }
+    opacity:0.8,
+    justifyContent:'center',
+  },
+  starsLine:{
+    flexDirection: "row",
+    margin:5,
+    alignItems: 'center',
+  },
 });

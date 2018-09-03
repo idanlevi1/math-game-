@@ -5,7 +5,8 @@ export class userStore {
   @observable user = {
     appId:null,
     coins:0,
-    stars:0, 
+    stars:0,
+    userLevels: null,
   }
   
   @observable sound = true
@@ -14,6 +15,15 @@ export class userStore {
     return this.user
   }
 
+  @computed get getUserLevels(){
+    if(this.user.userLevels){
+      let userLevelsArray = [];
+      this.user.userLevels.forEach(l=> {typeof l !== 'undefined' && userLevelsArray.push(l)})
+      return userLevelsArray
+    }
+    return null
+  }
+  
   @action addStars =(num)=> {
       this.user.stars = this.user.stars + num
   }

@@ -1,18 +1,43 @@
 import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
 import styles from "./LevelsMenuStyle";
+import { Ionicons } from '@expo/vector-icons';
+import * as Animatable from 'react-native-animatable';
+import {appColors} from '../colors'
+
+const getStarIcons = (stars) =>{
+  let elements = []
+  for(var i=0; i<stars ;i++)
+    elements.push(<Ionicons name={'md-star'} size={25} color={appColors.backgroundButton} key={i}/>)
+  for(let j=i; j<3 ;j++)
+    elements.push(<Ionicons name={'md-star-outline'} size={25} color={appColors.backgroundButton} key={j}/>)
+  return elements
+}
 
 class Level extends Component {
   render() {
+    const {level, userLevelDetails, allUserStars} = this.props
+    const disableLevel = allUserStars >= level.reqStars ? false : true
+    const playBefore = userLevelDetails ? false : true
     return (
-      <View style={styles.levelContainer}>
-        <Text>{this.props.level.name}</Text>
-        <Text>{this.props.level.number}</Text>
-        <Text>{this.props.level.number}</Text>
-        <Text>{this.props.level.record}</Text>
-        <Text>{this.props.level.type}</Text>
-      </View>
-
+      <TouchableOpacity disabled={disableLevel}>
+        <View style={[styles.levelContainer,disableLevel&&{opacity:0.5}]}>
+          <Animatable.View style={styles.starsLine} animation="pulse" easing="ease" iterationCount="infinite">
+            {getStarIcons(!playBefore ? userLevelDetails.stars : 0)}
+          </Animatable.View>
+          <Text>name: {level.name}</Text>
+          <Text>number level: {level.number}</Text>
+          <Text>Req Stars: {level.reqStars}</Text>
+          <Text>record: {level.record}</Text>
+          <Text>type: {level.type}</Text>
+          <Image style={{width: 100, height: 100}} source={{uri:level.img}}/>
+          {!playBefore ?
+            <Text>Stars: {userLevelDetails.stars} |  personal record: {userLevelDetails.personalRecord}</Text>
+            :
+            <Text>Close Level!</Text>
+          }
+        </View>
+      </TouchableOpacity>
     );
   }
 }
