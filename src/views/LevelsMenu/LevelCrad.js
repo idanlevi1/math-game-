@@ -14,20 +14,20 @@ const getStarIcons = (stars) =>{
   return elements
 }
 
-class Level extends Component {
+class LevelCrad extends Component {
   render() {
-    const {level, userLevelDetails, allUserStars} = this.props
+    const {level, userLevelDetails, allUserStars, navigation} = this.props
     const disableLevel = allUserStars >= level.reqStars ? false : true
     const playBefore = userLevelDetails ? false : true
     return (
-      <TouchableOpacity disabled={disableLevel}>
+      <TouchableOpacity disabled={disableLevel} onPress={()=>{ navigation.navigate('Level',{level:level}) }}>
         <View style={[styles.levelContainer,disableLevel&&{opacity:0.5}]}>
           <Animatable.View style={styles.starsLine} animation="pulse" easing="ease" iterationCount="infinite">
             {getStarIcons(!playBefore ? userLevelDetails.stars : 0)}
           </Animatable.View>
-          <Text>name: {level.name}</Text>
-          <Text>number level: {level.number}</Text>
+          <Text>{`name: ${level.name} number level: ${level.number}`}</Text>
           <Text>Req Stars: {level.reqStars}</Text>
+          <Text>time: {level.time}</Text>
           <Text>record: {level.record}</Text>
           <Text>type: {level.type}</Text>
           <Image style={{width: 100, height: 100}} source={{uri:level.img}}/>
@@ -42,4 +42,4 @@ class Level extends Component {
   }
 }
 
-export default Level;
+export default LevelCrad;

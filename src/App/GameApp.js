@@ -3,6 +3,7 @@ import Splash from '../views/Splash/Splash'
 import initdb from './initDB'
 import userStore from '../store/userStore'
 import levelsStore from '../store/levelsStore'
+import shoppingStore from '../store/shoppingStore'
 import { Provider } from 'mobx-react';
 
 export default class GameApp extends Component {
@@ -15,6 +16,7 @@ export default class GameApp extends Component {
         <Provider 
         userStore={userStore}
         levelsStore={levelsStore}
+        shoppingStore={shoppingStore}
         >
           <Splash />
         </Provider>

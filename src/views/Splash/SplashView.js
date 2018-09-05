@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Animated, StyleSheet } from "react-native";
 import InternetConnectionPopUp from "./InternetConnectionPopUp";
+import * as Progress from 'react-native-progress';
 const splashImg = require("../../images/splash.jpg");
 
 export default class SplashScreen extends React.Component {
@@ -36,6 +37,18 @@ export default class SplashScreen extends React.Component {
           ]}
           source={splashImg}
         />
+        <View style={styles.progressCircle}>
+          <Progress.Circle 
+            progress={this.props.progress}
+            showsText
+            formatText={()=>this.props.progress*100+'%'}
+            endAngle={1}
+            size={100}
+            color={'#09419b'}
+            unfilledColor={'#becfea'}
+
+          />
+        </View>
         <InternetConnectionPopUp />
       </View>
     );
@@ -55,5 +68,12 @@ const styles = StyleSheet.create({
     top: 0,
     width: "100%",
     height: "100%"
-  }
+  },
+  progressCircle:{
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+    position: 'absolute',
+    top: '80%',
+  },
 });

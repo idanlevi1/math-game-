@@ -7,6 +7,7 @@ export class userStore {
     coins:0,
     stars:0,
     userLevels: null,
+    shopping: null
   }
   
   @observable sound = true

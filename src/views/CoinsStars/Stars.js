@@ -1,15 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import styles from "./CoinsStarsStyles";
-import * as Animatable from 'react-native-animatable';
+import AnimatableIcon from '../components/AnimatableIcon'
 
 export default (Stars = props => {
   return (
     <View style={styles.card}>
-      <Animatable.View animation="pulse" easing="ease-out" iterationCount="infinite">
-        <Ionicons name={"md-star"} size={30} color={"#FFFFFF"} />
-      </Animatable.View>
+      <AnimatableIcon name={'md-star'}/>
       <Text style={styles.text}>Stars: {props.stars}</Text>
     </View>
   );

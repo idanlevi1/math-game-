@@ -3,21 +3,22 @@ import { View, ImageBackground, ScrollView } from 'react-native';
 import Stars from '../CoinsStars/Stars'
 import Coins from '../CoinsStars/Coins'
 import styles from "./LevelsMenuStyle";
-import Level from './Level';
+import LevelCrad from './LevelCrad';
 import BackButton from '../buttons/BackButton'
 
 const wallBackground = require('../../images/wall.jpg')
 
 class LevelsMenuView extends Component {
   render() {
-    const {coins,stars,levels, getUserLevels} = this.props
-    console.log("user Levels:",getUserLevels)
+    const {coins,stars,levels, userLevels,navigation} = this.props
+    console.log("user Levels:",userLevels)
     const levelsElements = Object.keys(levels).map(keyLevel => 
-      <Level 
+      <LevelCrad 
       key={keyLevel} 
       level={levels[keyLevel]} 
       allUserStars={stars}
-      userLevelDetails={getUserLevels && getUserLevels[keyLevel - 1]}
+      userLevelDetails={userLevels && userLevels[keyLevel - 1]}
+      navigation={navigation}
       />
     )
     return (
@@ -32,7 +33,7 @@ class LevelsMenuView extends Component {
         </ScrollView>
       </View>
       <View style={styles.bottomLine}>
-        <BackButton navigation={this.props.navigation}/>
+        <BackButton navigation={navigation}/>
       </View>
       </ImageBackground>
     );

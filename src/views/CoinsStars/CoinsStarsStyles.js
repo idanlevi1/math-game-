@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export default (styles = StyleSheet.create({
+export default styles = StyleSheet.create({
   card: {
     justifyContent: "center",
     alignItems: "center",
@@ -12,4 +12,4 @@ export default (styles = StyleSheet.create({
     fontSize: 30,
     color: "#FFFFFF",
   }
-}));
+});
