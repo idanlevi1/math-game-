@@ -11,7 +11,6 @@ const wallBackground = require('../../images/wall.jpg')
 class LevelsMenuView extends Component {
   render() {
     const {coins,stars,levels, userLevels,navigation} = this.props
-    console.log("user Levels:",userLevels)
     const levelsElements = Object.keys(levels).map(keyLevel => 
       <LevelCrad 
       key={keyLevel} 

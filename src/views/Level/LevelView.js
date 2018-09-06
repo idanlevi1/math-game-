@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, ImageBackground, Modal, Dimensions } from "react-native";
-const { width, height } = Dimensions.get("screen");
+const { width } = Dimensions.get("screen");
 import AnimatableIcon from '../components/AnimatableIcon'
+import BackButton from '../buttons/BackButton'
 import styles from './LevelStyle'
 import * as Progress from 'react-native-progress';
 
@@ -34,17 +35,9 @@ class LevelView extends Component {
     else {
       clearInterval(this.state.intervalId);
       this.setState({ finish: true });
-      this.playerLost()
+      this.props.onPlayerLost()
     }
   };
-
-  playerWon = () => {
-    console.log('WON')
-  }
-
-  playerLost = () => {
-    console.log('LOST')
-  }
 
   closeModal = () => {
     this.setState({finish:false})
@@ -52,7 +45,7 @@ class LevelView extends Component {
   }
 
   render() {
-    const { level, coins, stars, userLevels, sound } = this.props;
+    const { level, coins, stars, userLevelDetails, sound, onPlayerWon, onPlayerLost, onCheckLevel, navigation } = this.props;
     return (
       <View style={{ paddingTop: 100 }}>
         <View style={styles.progressBar}>
@@ -67,6 +60,10 @@ class LevelView extends Component {
           />
         </View>
         <Text style={[styles.titleModal,{color:'#09419b'}]}>{this.state.levelTime} Second left</Text>
+        <View style={styles.bottomLine}>
+          <BackButton navigation={navigation}/>
+        </View>
+        
         {this.state.finish &&
         <Modal
           visible={this.state.finish}

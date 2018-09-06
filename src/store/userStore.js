@@ -24,13 +24,34 @@ export class userStore {
     }
     return null
   }
+  @action initializeLevel = async(levelNumber) => {
+    let newLevel = { [levelNumber]: {
+      levelNumber:levelNumber,
+      stars:0,
+      personalRecord:999
+      }
+    }
+    await firebase.database().ref('users/'+this.user.appId +'/userLevels')
+    .update(newLevel)
+  }
   
-  @action addStars =(num)=> {
-      this.user.stars = this.user.stars + num
+  @action addStars = async(num)=> {
+    let newStars = this.user.stars + num
+    this.user.stars = newStars
+    await firebase.database().ref('users').child(this.user.appId).update({stars:newStars})
   }
 
-  @action addCoins = (num) => {
-    this.user.coins = this.user.coins + num
+  @action addCoins = async(num) => {
+    let newCoins = this.user.coins + num
+    this.user.coins = newCoins
+    await firebase.database().ref('users').child(this.user.appId).update({coins:newCoins})
+  }
+
+  @action async updateNewPersonalRecord(levelNumber,newRecordTime){
+    this.user.userLevels[levelNumber].personalRecord = newRecordTime
+    await firebase.database().ref('users/'+this.user.appId +'/userLevels')
+    .child(levelNumber)
+    .update({personalRecord:newRecordTime})
   }
 
   @action switchSound =()=> {

@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { appColors } from "../colors";
 
 export default (styles = StyleSheet.create({
@@ -42,5 +42,11 @@ export default (styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+  },
+  bottomLine:{
+    flexDirection: "row",
+    alignSelf: "center",
+    justifyContent: "space-between",
+    margin: 10,
   },
 }));

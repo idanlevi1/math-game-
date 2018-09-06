@@ -20,7 +20,7 @@ class LevelCrad extends Component {
     const disableLevel = allUserStars >= level.reqStars ? false : true
     const playBefore = userLevelDetails ? false : true
     return (
-      <TouchableOpacity disabled={disableLevel} onPress={()=>{ navigation.navigate('Level',{level:level}) }}>
+      <TouchableOpacity disabled={disableLevel} onPress={()=>{ navigation.navigate('Level',{level,userLevelDetails}) }}>
         <View style={[styles.levelContainer,disableLevel&&{opacity:0.5}]}>
           <Animatable.View style={styles.starsLine} animation="pulse" easing="ease" iterationCount="infinite">
             {getStarIcons(!playBefore ? userLevelDetails.stars : 0)}
