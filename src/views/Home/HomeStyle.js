@@ -18,7 +18,6 @@ export default styles = StyleSheet.create({
     justifyContent: "center",
     height: "100%",
     width: "100%",
-    opacity:0.9
   },
   backgroundImage: {
     position: "absolute",

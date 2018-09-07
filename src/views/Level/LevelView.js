@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, ImageBackground, Modal, Dimensions } from "react-native";
 const { width } = Dimensions.get("screen");
-import AnimatableIcon from '../components/AnimatableIcon'
 import BackButton from '../buttons/BackButton'
 import styles from './LevelStyle'
+import {appColors} from '../colors'
 import * as Progress from 'react-native-progress';
+import AnimatableImage from '../components/AnimatableImage'
 
 class LevelView extends Component {
   constructor(props) {
@@ -52,14 +53,14 @@ class LevelView extends Component {
       source={require('../../images/wall.jpg')}
       >
         <View style={styles.progressBar}>
-          <AnimatableIcon name={'ios-clock-outline'} />
+          <AnimatableImage source={require('../../images/timer.png')} />
           <View style={{marginHorizontal: 5,}}/>
           <Progress.Bar 
           progress={this.state.levelTime / this.state.fullTime} 
           width={width*0.75}
           height={30}
-          color={'#09419b'}
-          unfilledColor={'#becfea'}
+          color={appColors.backgroundButton}
+          unfilledColor={appColors.lionColor}
           />
         </View>
         <Text style={[styles.titleModal,{color:'#09419b'}]}>{this.state.levelTime} Second left</Text>
