@@ -8,7 +8,7 @@ export default styles = StyleSheet.create({
     height:null,
     justifyContent: 'center',
     alignItems: 'center',
-    opacity:0.8,
+    opacity:0.9,
   },
   levelsView: {
     height: height * 0.55 ,

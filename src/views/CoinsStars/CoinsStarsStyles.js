@@ -8,8 +8,8 @@ export default styles = StyleSheet.create({
     paddingBottom: 10
   },
   text: {
-    fontFamily: "Indie Flower",
-    fontSize: 30,
+    fontFamily: "Denk One",
+    fontSize: 24,
     color: "#FFFFFF",
   }
 });

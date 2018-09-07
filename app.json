@@ -1,5 +1,25 @@
 {
   "expo": {
-    "sdkVersion": "29.0.0"
+    "name": "Lion Math",
+    "description": "Math Game",
+    "slug": "LionMath",
+    "version": "1.0.0",
+    "icon": "./src/images/lionIcon180-180.png",
+    "sdkVersion": "29.0.0",
+    "privacy": "public",
+    "ios": {
+      "bundleIdentifier": "com.idanlevi.mathgame"
+    },
+    "android": {
+      "package": "com.idanlevi.mathgame",
+      "adaptiveIcon": {
+        "foregroundImage": "./src/images/lionIcon180-180.png",
+        "backgroundColor": "#FF8333"
+      }
+    },
+    "notification": {
+      "icon":"./src/images/lionIcon180-180.png"
+    },
+    "primaryColor":"#FF8333"
   }
 }

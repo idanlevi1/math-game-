@@ -2,6 +2,14 @@ import { StyleSheet } from "react-native";
 import { appColors } from "../colors";
 
 export default (styles = StyleSheet.create({
+  backgroundContainer:{
+    flex: 1,
+    width:null,
+    height:null,
+    justifyContent: 'center',
+    alignItems: 'center',
+    opacity:0.9,
+  },
   modalContainer: {
     marginTop: "45%",
     alignSelf: "center",

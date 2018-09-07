@@ -47,7 +47,10 @@ class LevelView extends Component {
   render() {
     const { level, coins, stars, userLevelDetails, sound, onPlayerWon, onPlayerLost, onCheckLevel, navigation } = this.props;
     return (
-      <View style={{ paddingTop: 100 }}>
+      <ImageBackground
+      style={styles.backgroundContainer}
+      source={require('../../images/wall.jpg')}
+      >
         <View style={styles.progressBar}>
           <AnimatableIcon name={'ios-clock-outline'} />
           <View style={{marginHorizontal: 5,}}/>
@@ -84,7 +87,7 @@ class LevelView extends Component {
             </ImageBackground>
         </Modal>
         }
-      </View>
+      </ImageBackground>
     );
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Animated, StyleSheet } from "react-native";
 import InternetConnectionPopUp from "./InternetConnectionPopUp";
 import * as Progress from 'react-native-progress';
-const splashImg = require("../../images/splash.jpg");
+import {appColors} from '../colors'
 
 export default class SplashScreen extends React.Component {
   state = {
@@ -12,7 +12,7 @@ export default class SplashScreen extends React.Component {
   onLoad = () => {
     Animated.timing(this.state.opacity, {
       toValue: 0.8,
-      duration: 2500,
+      duration: 800,
       useNativeDriver: true
     }).start();
   };
@@ -27,15 +27,15 @@ export default class SplashScreen extends React.Component {
               transform: [
                 {
                   scale: this.state.opacity.interpolate({
-                    inputRange: [0.3, 0.8],
-                    outputRange: [0.5, 1]
+                    inputRange: [0,0.7],
+                    outputRange: [0,0.8]
                   })
                 }
               ]
             },
             styles.splash
           ]}
-          source={splashImg}
+          source={require("../../images/splash.png")}
         />
         <View style={styles.progressCircle}>
           <Progress.Circle 
@@ -44,9 +44,9 @@ export default class SplashScreen extends React.Component {
             formatText={()=>this.props.progress*100+'%'}
             endAngle={1}
             size={100}
-            color={'#09419b'}
-            unfilledColor={'#becfea'}
-
+            color={appColors.backgroundButton}
+            unfilledColor={appColors.lionColor}
+            thickness={12}
           />
         </View>
         <InternetConnectionPopUp />
@@ -58,9 +58,9 @@ export default class SplashScreen extends React.Component {
 const styles = StyleSheet.create({
   contain: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: appColors.splashBackgound,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   splash: {
     position: "absolute",

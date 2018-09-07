@@ -1,5 +1,6 @@
 import {observable, action, computed} from 'mobx'
 import * as firebase from 'firebase';
+import {registerForPushNotificationsAsync,updateNotificationSettingUser} from '../App/Notifications'
 
 export class userStore {
   @observable user = {
@@ -7,7 +8,11 @@ export class userStore {
     coins:0,
     stars:0,
     userLevels: null,
-    shopping: null
+    shopping: {
+      time:0,
+      stars:0,
+      totalPay:0,
+    }
   }
   
   @observable sound = true
@@ -60,21 +65,27 @@ export class userStore {
 
   @action async checkExistUser(appId){
     let ref = firebase.database().ref('users')
-    let exist = await ref.orderByChild('appId')
+    let exist = true
+    await ref.orderByChild('appId')
     .equalTo(appId).once('value' , 
     snapshot => {
       let dbRes = snapshot.val()
       if(dbRes){
         this.user = Object.assign(this.user, dbRes[appId]);
-        return true
       }
       else{
         this.user.appId= appId
         ref.child(appId).set(this.user)
-        return false
+        exist = false
       }
     })
     return exist 
+  }
+
+  @action async updateNotificationsSetting(){
+    let notificationSettingsUser = await registerForPushNotificationsAsync()
+    await updateNotificationSettingUser(notificationSettingsUser,this.user.appId)
+    this.user = Object.assign(this.user, {settings: notificationSettingsUser});
   }
 }
 

@@ -42,7 +42,7 @@ export default styles = StyleSheet.create({
     paddingVertical: 7,
   },
   text: {
-    fontFamily: "Indie Flower",
+    fontFamily: "Fredericka the Great",
     fontSize: 30,
     color: "#FFFFFF",
     margin: 10
