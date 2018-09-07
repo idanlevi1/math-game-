@@ -19,16 +19,23 @@ class Splash extends Component {
     const {userStore, levelsStore, shoppingStore} = this.props
     let existResult = await userStore.checkExistUser(Expo.Constants.deviceId)
     this.setState({progress:0.35})
-    let loadingTime = existResult ? 1000 : 2000
+    if(!existResult){
+      await userStore.updateNotificationsSetting()
+      this.setState({progress:0.43})
+    }
     await levelsStore.loadingLevels()
     this.setState({progress:0.50})
     await shoppingStore.loadingShoppingItems()
     this.setState({progress:0.76})
     await Font.loadAsync({
       'Indie Flower': require('../../../assets/fonts/IndieFlower.ttf'),
+      'Denk One': require('../../../assets/fonts/DenkOne-Regular.ttf'),
+      'Fredericka the Great': require('../../../assets/fonts/FrederickatheGreat-Regular.ttf'),
+      'Merienda': require('../../../assets/fonts/Merienda-Regular.ttf'),
+      'Merienda bold': require('../../../assets/fonts/Merienda-Bold.ttf'),
     });
-    this.setState({progress:loadingTime>1000 ? 0.79 : 0.88 })
-    setTimeout(() => this.setState({ splash: false }),loadingTime);
+    this.setState({progress:0.87})
+    setTimeout(() => this.setState({ splash: false }),100);
     this.setState({progress:0.99})
   }
 
