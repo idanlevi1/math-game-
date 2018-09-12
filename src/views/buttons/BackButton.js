@@ -6,7 +6,12 @@ import * as Animatable from 'react-native-animatable'
 
 const BackButton = (props) => {
     return ( 
-        <TouchableOpacity underlayColor='#fff' onPress={()=>{props.navigation.goBack()}} >
+        <TouchableOpacity underlayColor='#fff'
+        onPress={()=>{
+            props.pop2screens ? 
+            props.navigation.pop(2)
+            :
+            props.navigation.goBack()}} >
             <Animatable.View style={styles.iconButton}>
             <Ionicons name={'md-arrow-back'} size={40} color={appColors.secondaryColor}/>
             </Animatable.View>

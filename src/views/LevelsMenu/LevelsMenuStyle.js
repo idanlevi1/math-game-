@@ -1,5 +1,6 @@
 import { Dimensions, StyleSheet } from "react-native";
 const { width, height } = Dimensions.get("screen");
+import {appColors} from '../colors'
 
 export default styles = StyleSheet.create({
   backgroundContainer:{
@@ -27,18 +28,18 @@ export default styles = StyleSheet.create({
     margin: 10,
   },
   levelContainer:{
-    //backgroundColor:'#fff',
     height: height*0.5 ,
     width: width*0.55 ,
-    borderWidth: 3,
-    //borderRadius: 10,
-    //margin:5,
-    //opacity:0.8,
     justifyContent:'center',
+    alignItems:'center'
   },
   starsLine:{
     flexDirection: "row",
     margin:5,
     alignItems: 'center',
+  },
+  prefaceLevelContainer:{
+    flex: 1,
+    backgroundColor: appColors.splashBackgound,
   },
 });

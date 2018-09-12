@@ -63,9 +63,9 @@ class LevelView extends Component {
           unfilledColor={appColors.lionColor}
           />
         </View>
-        <Text style={[styles.titleModal,{color:'#09419b'}]}>{this.state.levelTime} Second left</Text>
+        <Text style={[styles.titleModal,{color:'#FFFFFF'}]}>{this.state.levelTime} Second left</Text>
         <View style={styles.bottomLine}>
-          <BackButton navigation={navigation}/>
+          <BackButton navigation={navigation} pop2screens={true}/>
         </View>
         
         {this.state.finish &&
