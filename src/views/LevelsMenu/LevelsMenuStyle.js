@@ -27,13 +27,13 @@ export default styles = StyleSheet.create({
     margin: 10,
   },
   levelContainer:{
-    backgroundColor:'#fff',
+    //backgroundColor:'#fff',
     height: height*0.5 ,
     width: width*0.55 ,
     borderWidth: 3,
-    borderRadius: 10,
-    margin:5,
-    opacity:0.8,
+    //borderRadius: 10,
+    //margin:5,
+    //opacity:0.8,
     justifyContent:'center',
   },
   starsLine:{

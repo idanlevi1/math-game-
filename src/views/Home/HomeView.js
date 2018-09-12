@@ -8,8 +8,8 @@ import Stars from '../CoinsStars/Stars'
 import Coins from '../CoinsStars/Coins'
 import styles from "./HomeStyle";
 
-const logoImg = require('../../images/Logo.png');
-const wallBackground = require('../../images/wall.jpg')
+const logoImg = require('../../../assets/images/Logo.png');
+const wallBackground = require('../../../assets/images/wall.jpg')
 
 
 class HomeView extends Component {

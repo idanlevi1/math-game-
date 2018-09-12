@@ -35,7 +35,7 @@ export default class SplashScreen extends React.Component {
             },
             styles.splash
           ]}
-          source={require("../../images/splash.png")}
+          source={require("../../../assets/images/splash.png")}
         />
         <View style={styles.progressCircle}>
           <Progress.Circle 

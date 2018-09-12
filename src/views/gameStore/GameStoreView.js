@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ImageBackground, Text } from 'react-native';
 import styles from "./GameStoreStyle";
 
-const wallBackground = require('../../images/wall.jpg')
+const wallBackground = require('../../../assets/images/wall.jpg')
 
 class GameStoreView extends Component {
   render() {

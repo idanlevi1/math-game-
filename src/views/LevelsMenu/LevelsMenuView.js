@@ -6,8 +6,6 @@ import styles from "./LevelsMenuStyle";
 import LevelCrad from './LevelCrad';
 import BackButton from '../buttons/BackButton'
 
-const wallBackground = require('../../images/wall.jpg')
-
 class LevelsMenuView extends Component {
   render() {
     const {coins,stars,levels, userLevels,navigation} = this.props
@@ -21,7 +19,7 @@ class LevelsMenuView extends Component {
       />
     )
     return (
-      <ImageBackground style={styles.backgroundContainer} source={wallBackground}>
+      <ImageBackground style={styles.backgroundContainer} source={require('../../../assets/images/wall.jpg')}>
         <View style={styles.rowIcons}>
             <Stars stars={stars}/>
             <Coins coins={coins}/>

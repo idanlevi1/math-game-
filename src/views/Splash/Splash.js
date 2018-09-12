@@ -2,13 +2,23 @@ import React, { Component } from "react";
 import SplashView from "./SplashView";
 import AppNav from "../../nav/AppNav";
 import { observer, inject } from "mobx-react";
-import { Font } from 'expo';
+import { Asset, Font } from 'expo';
+import images from '../../App/images'
+import fonts from '../../App/fonts'
+
+function cacheImages(images) {
+  return images.map(image => {
+    if (typeof image === 'string')
+      return Image.prefetch(image);
+    else
+      return Asset.fromModule(image).downloadAsync();
+  });
+}
 
 @inject('userStore')
 @inject('levelsStore')
 @inject('shoppingStore')
 @observer
-
 class Splash extends Component {
   constructor(props) {
     super(props);
@@ -17,24 +27,27 @@ class Splash extends Component {
 
   async componentDidMount() {
     const {userStore, levelsStore, shoppingStore} = this.props
+    //check if user exist - load all data, if not - register user
     let existResult = await userStore.checkExistUser(Expo.Constants.deviceId)
     this.setState({progress:0.35})
     if(!existResult){
       await userStore.updateNotificationsSetting()
       this.setState({progress:0.43})
     }
+    //loading levels data
     await levelsStore.loadingLevels()
     this.setState({progress:0.50})
+    //loading shopping store data
     await shoppingStore.loadingShoppingItems()
+    this.setState({progress:0.62})
+    //loading images
+    const imageAssets = cacheImages(images)
+    await Promise.all([...imageAssets]);
     this.setState({progress:0.76})
-    await Font.loadAsync({
-      'Indie Flower': require('../../../assets/fonts/IndieFlower.ttf'),
-      'Denk One': require('../../../assets/fonts/DenkOne-Regular.ttf'),
-      'Fredericka the Great': require('../../../assets/fonts/FrederickatheGreat-Regular.ttf'),
-      'Merienda': require('../../../assets/fonts/Merienda-Regular.ttf'),
-      'Merienda bold': require('../../../assets/fonts/Merienda-Bold.ttf'),
-    });
+    //loading fonts
+    await Font.loadAsync(fonts);
     this.setState({progress:0.87})
+
     setTimeout(() => this.setState({ splash: false }),100);
     this.setState({progress:0.99})
   }

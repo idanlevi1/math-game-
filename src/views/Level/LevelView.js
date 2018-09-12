@@ -50,10 +50,10 @@ class LevelView extends Component {
     return (
       <ImageBackground
       style={styles.backgroundContainer}
-      source={require('../../images/wall.jpg')}
+      source={require('../../../assets/images/wall.jpg')}
       >
         <View style={styles.progressBar}>
-          <AnimatableImage source={require('../../images/timer.png')} />
+          <AnimatableImage source={require('../../../assets/images/timer.png')} />
           <View style={{marginHorizontal: 5,}}/>
           <Progress.Bar 
           progress={this.state.levelTime / this.state.fullTime} 
@@ -75,7 +75,7 @@ class LevelView extends Component {
           transparent
           onRequestClose={this.closeModal}
           >
-            <ImageBackground style={styles.modalContainer} source={require('../../images/modalBackground.jpeg')}>
+            <ImageBackground style={styles.modalContainer} source={require('../../../assets/images/borderForest.png')}>
                 <Text style={styles.titleModal}>{this.state.won ? 'WON!' : 'LOST!'} </Text>
                 <Text style={styles.subtitleModal}>{this.state.won ? 'bla bla winner!' : 'bla bla - loser!'}</Text>        
                 <TouchableOpacity

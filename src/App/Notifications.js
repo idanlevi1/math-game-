@@ -44,10 +44,10 @@ export const sendPushNotification = (token, title, body) => {
         body: body,
         data: { message: `${title} - ${body}` },
         sound: "default",
-        //icon: "../../images/haprevLogo.png",
+        icon: "/assets/images/lionIcon180-180.png",
         android:{
-         // icon: "../../images/haprevLogo.png",
-          sound:"default"
+            icon: "/assets/images/lionIcon180-180.png",
+            sound:"default"
         }
       }),
       headers: {
