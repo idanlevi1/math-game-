@@ -43,7 +43,7 @@ export default (styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 15,
-    backgroundColor: appColors.secondaryColor,
+    backgroundColor: appColors.lionColorDark,
     paddingVertical: 10,
   },
   progressBar:{

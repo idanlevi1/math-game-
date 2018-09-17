@@ -13,7 +13,7 @@ const BackButton = (props) => {
             :
             props.navigation.goBack()}} >
             <Animatable.View style={styles.iconButton}>
-            <Ionicons name={'md-arrow-back'} size={40} color={appColors.secondaryColor}/>
+            <Ionicons name={'md-arrow-back'} size={40} color={appColors.lionColorDark}/>
             </Animatable.View>
         </TouchableOpacity> 
     );
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#000',
       borderRadius: 100,
       borderWidth: 1,
-      borderColor: appColors.secondaryColor,
+      borderColor: appColors.lionColorDark,
       marginHorizontal: 15,
       paddingHorizontal: 11,
       paddingVertical: 7,

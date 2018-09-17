@@ -8,6 +8,8 @@ export class userStore {
     coins:0,
     stars:0,
     userLevels: null,
+    bonus: null,
+    currentLocale: null,
     shopping: {
       time:0,
       stars:0,
@@ -68,13 +70,14 @@ export class userStore {
     let exist = true
     await ref.orderByChild('appId')
     .equalTo(appId).once('value' , 
-    snapshot => {
+    async snapshot => {
       let dbRes = snapshot.val()
       if(dbRes){
         this.user = Object.assign(this.user, dbRes[appId]);
       }
       else{
         this.user.appId= appId
+        this.user.currentLocale = await Expo.DangerZone.Localization.getCurrentLocaleAsync()
         ref.child(appId).set(this.user)
         exist = false
       }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ImageBackground, ScrollView } from 'react-native';
-import Stars from '../CoinsStars/Stars'
-import Coins from '../CoinsStars/Coins'
+import Stars from '../Elements/Stars'
+import Coins from '../Elements/Coins'
 import styles from "./LevelsMenuStyle";
 import LevelCrad from './LevelCrad';
 import BackButton from '../buttons/BackButton'

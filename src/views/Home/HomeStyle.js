@@ -35,7 +35,7 @@ export default styles = StyleSheet.create({
     backgroundColor: '#000',
     borderRadius: 100,
     borderWidth: 1,
-    borderColor: appColors.secondaryColor,
+    borderColor: appColors.lionColorDark,
     marginHorizontal: 15,
     paddingHorizontal: 11,
     paddingVertical: 7,
@@ -43,17 +43,23 @@ export default styles = StyleSheet.create({
   text: {
     fontFamily: "Fredericka the Great",
     fontSize: 30,
-    color: "#FFFFFF",
-    margin: 10
+    margin: 10,
+    color: appColors.lionOrangeDark,
+
   },
   playButton: {
-    borderWidth: 2,
-    borderColor: "#FFFFFF",
-    height: height / 8,
-    width: width / 2.5,
+    borderWidth: 5,
+    borderColor: appColors.lionColorDark,
+    height: height * 0.12,
+    width: width * 0.4,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 15,
-    backgroundColor: appColors.secondaryColor
-  }
+    borderRadius: 30,
+    backgroundColor: appColors.lionColor
+  },
+  playButtonOutside:{
+    borderWidth: 5,
+    borderColor: appColors.lionOrange,
+    borderRadius: 37,
+  },
 });

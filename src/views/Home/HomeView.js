@@ -4,8 +4,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { appColors } from '../colors';
 import * as Animatable from 'react-native-animatable'
 import Toast from 'react-native-simple-toast';
-import Stars from '../CoinsStars/Stars'
-import Coins from '../CoinsStars/Coins'
+import Stars from '../Elements/Stars'
+import Coins from '../Elements/Coins'
+import BonusElement from '../Elements/Bonus'
 import styles from "./HomeStyle";
 
 const logoImg = require('../../../assets/images/Logo.png');
@@ -14,7 +15,7 @@ const wallBackground = require('../../../assets/images/wall.jpg')
 
 class HomeView extends Component {
   render() {
-    const {coins,stars,sound} = this.props
+    const {coins,stars,sound, navigation, bonusStatus,userBonus} = this.props
     return (
         <ImageBackground
           style={styles.backgroundContainer}
@@ -23,6 +24,11 @@ class HomeView extends Component {
             {/* STARS & COINS */}
             <View style={styles.rowIcons}>
                 <Stars stars={stars}/>
+                <BonusElement 
+                bonusStatus={bonusStatus} 
+                navigation={navigation} 
+                userBonus={userBonus} 
+                />
                 <Coins coins={coins}/>
             </View>
             {/* LOGO */}
@@ -35,9 +41,9 @@ class HomeView extends Component {
                 />
             </View>
             {/* Play Button */}
-            <TouchableOpacity onPress={()=>{this.props.onPlay()}}>
+            <TouchableOpacity style={styles.playButtonOutside} onPress={()=>{this.props.onPlay()}}>
                 <View style={styles.playButton}>
-                    <Text style={[styles.text,{fontSize: 50}]}>Play</Text>
+                    <Text style={[styles.text,{fontSize: 44}]}>Play</Text>
                 </View>
             </TouchableOpacity>
             {/* Icons Row */}
@@ -47,22 +53,22 @@ class HomeView extends Component {
                     style={styles.iconButton}
                     ref={(ref)=>{this.soundRef = ref}}
                     >
-                    <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.secondaryColor}/>
+                    <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.lionColorDark}/>
                     </Animatable.View>
                 </TouchableOpacity>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.bounce(500); this.props.navigation.navigate('GameStore')}}>
+                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.bounce(500); navigation.navigate('GameStore')}}>
                     <Animatable.View 
                     style={styles.iconButton}
                     ref={(ref)=>{this.store = ref}}
                     >
-                    <Ionicons name={'ios-basket-outline'} size={40} color={appColors.secondaryColor}/>
+                    <Ionicons name={'ios-basket-outline'} size={40} color={appColors.lionColorDark}/>
                     </Animatable.View>
                 </TouchableOpacity>
                 <TouchableOpacity underlayColor='#fff' onPress={()=>{Toast.show('Sorry, not available in this version');}} >
                     <Animatable.View 
                     style={styles.iconButton}
                     >
-                    <Ionicons name={'md-globe'} size={40} color={appColors.secondaryColor}/>
+                    <Ionicons name={'md-globe'} size={40} color={appColors.lionColorDark}/>
                     </Animatable.View>
                 </TouchableOpacity>
             </View>

@@ -22,9 +22,9 @@ class LevelCrad extends Component {
   getStarIcons = (stars) =>{
     let elements = []
     for(var i=0; i<stars ;i++)
-      elements.push(<Ionicons name={'md-star'} size={35} color={appColors.backgroundButton} key={i}/>)
+      elements.push(<Ionicons name={'md-star'} size={35} color={appColors.lionOrange} key={i}/>)
     for(let j=i; j<3 ;j++)
-      elements.push(<Ionicons name={'md-star-outline'} size={35} color={appColors.backgroundButton} key={j}/>)
+      elements.push(<Ionicons name={'md-star-outline'} size={35} color={appColors.lionOrange} key={j}/>)
     return elements
   }
 

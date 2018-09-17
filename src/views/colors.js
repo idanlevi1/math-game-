@@ -1,9 +1,10 @@
 export const appColors = {
     mainColor:'#063978',
     splashBackgound:'#023779',
-    secondaryColor:'#FABC36',
-    backgroundButton:'#FF8333',
-    lionColor:'#FFD54F'
+    lionColor:'#FFD54F',
+    lionColorDark:'#FABC36',
+    lionOrange:'#FF8333',
+    lionOrangeDark:'#ff6600',
 }
 
 export const whiteText = {

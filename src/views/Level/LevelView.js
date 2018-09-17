@@ -59,7 +59,7 @@ class LevelView extends Component {
           progress={this.state.levelTime / this.state.fullTime} 
           width={width*0.75}
           height={30}
-          color={appColors.backgroundButton}
+          color={appColors.lionOrange}
           unfilledColor={appColors.lionColor}
           />
         </View>

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import styles from "./CoinsStarsStyles";
+import styles from "./ElementsStyles";
 import AnimatableImage from '../components/AnimatableImage'
 
 export default (Stars = props => {

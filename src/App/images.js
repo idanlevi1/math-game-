@@ -1,12 +1,12 @@
 export default images = [
     require("../../assets/images/wall.jpg"),
     require("../../assets/images/Logo.png"),
-    require("../../assets/images/splash.png"),
     require("../../assets/images/lionIcon.png"),
     require("../../assets/images/lionIcon180-180.png"),
     require("../../assets/images/coins.png"),
     require("../../assets/images/stars.png"),
     require("../../assets/images/bonus.png"),
+    require('../../assets/images/bonusDisable.png'),
     require("../../assets/images/timer.png"),
     require("../../assets/images/borderLevel.png"),
     require("../../assets/images/border1.png"),

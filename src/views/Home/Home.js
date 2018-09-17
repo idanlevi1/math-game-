@@ -7,11 +7,23 @@ import { observer,inject } from 'mobx-react';
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.state ={bonusStatus:true}
     // this.audioPlayer = new Expo.Audio.Sound();
   }
 
   componentDidMount = async() => {
-
+    //Calculate BONUS status
+    let bonus = this.props.userStore.getUser.bonus
+    let bonusStatus = true
+    if(bonus){
+      let lastDay = new Date()
+      lastDay.setDate(lastDay.getDate()-1);
+      if(bonus>lastDay){
+        bonusStatus = false
+        this.setState({bonusStatus})
+      }
+    }
+    
     // try {
     //   await this.audioPlayer.unloadAsync()
     //   await this.audioPlayer.loadAsync(require('../../../assets/audio/pb_sunset_love.mp3'));
@@ -31,7 +43,7 @@ export default class Home extends React.Component {
     this.props.navigation.navigate('LevelsMenu')
   }
   render() {
-    const {coins,stars} = this.props.userStore.getUser
+    const {coins,stars,bonus} = this.props.userStore.getUser
     return (
       <HomeView
       switchSound={this.switchSound}
@@ -40,6 +52,8 @@ export default class Home extends React.Component {
       stars={stars}
       sound={this.props.userStore.sound}
       navigation={this.props.navigation}
+      bonusStatus= {this.state.bonusStatus}
+      userBonus={bonus}
       />
     );
   }

@@ -11,6 +11,7 @@ export default class App extends Component {
         _console.warn(message);
       }
     };
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.PORTRAIT);
   };
   
   render() {

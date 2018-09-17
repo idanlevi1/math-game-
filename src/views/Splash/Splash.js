@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { View, StatusBar } from 'react-native';
 import SplashView from "./SplashView";
 import AppNav from "../../nav/AppNav";
 import { observer, inject } from "mobx-react";
@@ -26,6 +27,7 @@ class Splash extends Component {
   }
 
   async componentDidMount() {
+    StatusBar.setHidden(true);
     const {userStore, levelsStore, shoppingStore} = this.props
     //check if user exist - load all data, if not - register user
     let existResult = await userStore.checkExistUser(Expo.Constants.deviceId)
