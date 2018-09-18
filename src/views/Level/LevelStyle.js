@@ -57,4 +57,23 @@ export default (styles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 10,
   },
+  prefaceLevelContainer:{
+    flex: 1,
+    width:null,
+  },
+  viewContanerPreface:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  prefaceTextTitle:{
+    fontFamily: 'Fredericka the Great',
+    fontSize: 48,
+    marginBottom:10,
+  },
+  prefaceText:{
+    fontFamily: 'Denk One',
+    fontSize: 26,
+    marginTop:10,
+  },
 }));

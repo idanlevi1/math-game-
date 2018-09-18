@@ -11,7 +11,8 @@ import styles from "./HomeStyle";
 
 const logoImg = require('../../../assets/images/Logo.png');
 const wallBackground = require('../../../assets/images/wall.jpg')
-
+// const animationTypes = ["jello","bounce","pulse","swing","wobble"]
+// animationTypes[Math.floor(Math.random()*animationTypes.length)]
 
 class HomeView extends Component {
   render() {
@@ -37,7 +38,7 @@ class HomeView extends Component {
                     style={styles.logoImage}
                     resizeMode='contain'
                     source={logoImg}
-                    animation="pulse" easing="ease-out" iterationCount="infinite"
+                    animation={"pulse"} easing="ease-out" iterationCount="infinite"
                 />
             </View>
             {/* Play Button */}
@@ -47,7 +48,7 @@ class HomeView extends Component {
                 </View>
             </TouchableOpacity>
             {/* Icons Row */}
-            <View style={[styles.rowIcons,{paddingTop:25}]}>
+            <View style={[styles.rowIcons,{paddingTop:25,marginHorizontal:25,}]}>
                 <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.shake(400); this.props.switchSound()}}>
                     <Animatable.View 
                     style={styles.iconButton}

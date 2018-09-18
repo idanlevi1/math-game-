@@ -8,18 +8,18 @@ export default styles = StyleSheet.create({
     width:null,
     height:null,
     justifyContent: 'center',
-    alignItems: 'center',
     opacity:0.9,
   },
   levelsView: {
     height: height * 0.55 ,
     width: width * 0.85,
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
   rowIcons: {
     height: height *  0.25,
     flexDirection: "row",
-    alignSelf: "center",
-    justifyContent: "space-between"
+    justifyContent: "space-around"
   },
   bottomLine:{
     flexDirection: "row",
@@ -31,15 +31,19 @@ export default styles = StyleSheet.create({
     height: height*0.5 ,
     width: width*0.55 ,
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
   },
   starsLine:{
     flexDirection: "row",
-    margin:5,
-    alignItems: 'center',
   },
-  prefaceLevelContainer:{
-    flex: 1,
-    backgroundColor: appColors.splashBackgound,
+  cardTextTitle:{
+    fontFamily: "Fredericka the Great",
+    fontSize: 32,
+  },
+  cardText:{
+    fontFamily: "Fredericka the Great",
+    fontSize: 26,
+    textAlign:'center',
+    marginBottom: 5,
   },
 });

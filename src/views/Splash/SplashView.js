@@ -11,7 +11,7 @@ export default class SplashScreen extends React.Component {
   componentDidMount() {
     Animated.timing(this.animated, {
       toValue: 0,
-      duration: 2500,
+      duration: 1500,
     }).start();
   };
 
@@ -22,34 +22,33 @@ export default class SplashScreen extends React.Component {
     })
     const translateY = this.animated.interpolate({
       inputRange: [0,1],
-      outputRange: [height,0]
+      outputRange: [height*1.4,0]
     })
     return (
       <View style={{flex:1}}>
-      <View style={styles.container}>
-        <Animated.View style={[styles.inside,{transform:[{translateX},{translateY}]}]}>
-          
-          <InternetConnectionPopUp />
-        </Animated.View>
-      </View>
-
-      <Image
-      style={styles.splashLogo}
-      source={require("../../../assets/images/Logo.png")}
-      resizeMode='contain'
-      />
-      <View style={styles.progressCircle}>
-        <Progress.Circle 
-          progress={this.props.progress}
-          showsText
-          formatText={()=>this.props.progress*100+'%'}
-          endAngle={1}
-          size={100}
-          color={appColors.lionOrange}
-          unfilledColor={appColors.lionColor}
-          thickness={12}
+        <View style={styles.container}>
+          <Animated.View style={[styles.inside,{transform:[{translateX},{translateY}]}]}>
+            
+            <InternetConnectionPopUp />
+          </Animated.View>
+        </View>
+        <Image
+        style={styles.splashLogo}
+        source={require("../../../assets/images/Logo.png")}
+        resizeMode='contain'
         />
-      </View>
+        <View style={styles.progressCircle}>
+          <Progress.Circle 
+            progress={this.props.progress}
+            showsText
+            formatText={()=>this.props.progress*100+'%'}
+            endAngle={1}
+            size={100}
+            color={appColors.lionOrange}
+            unfilledColor={appColors.lionColor}
+            thickness={12}
+          />
+        </View>
       </View>
     );
   }

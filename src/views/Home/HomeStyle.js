@@ -8,14 +8,13 @@ export default styles = StyleSheet.create({
     width:null,
     height:null,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   logoView: {
     height: height / 2.5,
-    width: width / 1.5
+    width: width / 1.5,
+    alignSelf: "center",
   },
   logoImage: {
-    justifyContent: "center",
     height: "100%",
     width: "100%",
   },
@@ -28,8 +27,7 @@ export default styles = StyleSheet.create({
   },
   rowIcons: {
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
   },
   iconButton: {
     backgroundColor: '#000',
@@ -45,7 +43,6 @@ export default styles = StyleSheet.create({
     fontSize: 30,
     margin: 10,
     color: appColors.lionOrangeDark,
-
   },
   playButton: {
     borderWidth: 5,
@@ -53,7 +50,6 @@ export default styles = StyleSheet.create({
     height: height * 0.12,
     width: width * 0.4,
     alignItems: "center",
-    justifyContent: "center",
     borderRadius: 30,
     backgroundColor: appColors.lionColor
   },
@@ -61,5 +57,6 @@ export default styles = StyleSheet.create({
     borderWidth: 5,
     borderColor: appColors.lionOrange,
     borderRadius: 37,
+    alignSelf: "center",
   },
 });

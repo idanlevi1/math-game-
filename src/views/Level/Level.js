@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import { observer, inject } from "mobx-react";
 import LevelView from "./LevelView";
+import PrefaceLevel from "./PrefaceLevel";
 
 @inject('userStore')
 @inject('levelsStore')
 @observer
 class Level extends Component {
+  state = {preLevel:true}
 
   async componentDidMount() {
     const { level, userLevelDetails } = this.props.navigation.state.params
     // if first time - iniialize level
     if(!userLevelDetails)
       await this.props.userStore.initializeLevel(level.number)
+
+    setTimeout(() => {this.setState({preLevel:false})}, 4000)
   }
 
   checkLevel = () =>{
@@ -84,6 +88,7 @@ class Level extends Component {
     const { coins, stars, shopping } = userStore.getUser;
     
     return (
+        !this.state.preLevel ?
         <LevelView
         level={level}
         coins={coins}
@@ -95,6 +100,12 @@ class Level extends Component {
         onPlayerWon={this.playerWon}
         onPlayerLost={this.playerLost}
         onCheckLevel={this.checkLevel}
+        />
+        :
+        <PrefaceLevel
+        level={level}
+        bonusTime={shopping.time}
+        personalRecord={userLevelDetails.personalRecord}
         />
     )
   }

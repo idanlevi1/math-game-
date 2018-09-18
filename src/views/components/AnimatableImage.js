@@ -6,12 +6,12 @@ export default AnimatableImage = (props) => {
     return ( 
         <Animatable.View 
         animation="pulse" 
-        easing="ease-out" 
+        easing="ease-in-sine" 
         iterationCount="infinite">
             <Image 
             style={{
-                width:props.width ? props.width : 45,
-                height:props.height ? props.height : 45,
+                width:props.size ? props.size : 60,
+                height:props.size ? props.size : 60,
             }} 
             resizeMode='contain' 
             source={props.source}

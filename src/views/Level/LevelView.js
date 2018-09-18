@@ -20,7 +20,7 @@ class LevelView extends Component {
   }
 
   componentDidMount() {
-    let levelTime = this.props.level.time + this.props.shoppingTime - 1 ;
+    let levelTime = 2//this.props.level.time + this.props.shoppingTime - 1 ;
     var intervalId = setInterval(this.timer, 1000);
     this.setState({ levelTime, intervalId, fullTime: levelTime });
   }
@@ -65,7 +65,7 @@ class LevelView extends Component {
         </View>
         <Text style={[styles.titleModal,{color:'#FFFFFF'}]}>{this.state.levelTime} Second left</Text>
         <View style={styles.bottomLine}>
-          <BackButton navigation={navigation} pop2screens={true}/>
+          <BackButton navigation={navigation}/>
         </View>
         
         {this.state.finish &&
@@ -75,7 +75,7 @@ class LevelView extends Component {
           transparent
           onRequestClose={this.closeModal}
           >
-            <ImageBackground style={styles.modalContainer} source={require('../../../assets/images/borderForest.png')}>
+            <ImageBackground style={styles.modalContainer} source={require('../../../assets/images/borderResult.png')}>
                 <Text style={styles.titleModal}>{this.state.won ? 'WON!' : 'LOST!'} </Text>
                 <Text style={styles.subtitleModal}>{this.state.won ? 'bla bla winner!' : 'bla bla - loser!'}</Text>        
                 <TouchableOpacity

@@ -38,7 +38,7 @@ export default BonusElement = props => {
                     <Image
                     style={{width:45,height:45}} 
                     resizeMode='contain' 
-                    source={require('../../../assets/images/bonusDisable.png')}
+                    source={require('../../../assets/images/bonusGray.png')}
                     />
                 }
                 

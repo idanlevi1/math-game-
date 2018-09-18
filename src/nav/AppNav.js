@@ -3,7 +3,7 @@ import HomeScreen from '../views/Home/Home'
 import LevelsMenuScreen from '../views/LevelsMenu/LevelsMenu'
 import GameStoreScreen from '../views/gameStore/GameStore'
 import LevelScreen from '../views/Level/Level'
-import PrefaceLevelScreen from '../views/LevelsMenu/PrefaceLevel'
+import PrefaceLevelScreen from '../views/Level/PrefaceLevel'
 import BonusScreen from '../views/Bonus/Bonus'
 
 const HomeRoute = createStackNavigator(
