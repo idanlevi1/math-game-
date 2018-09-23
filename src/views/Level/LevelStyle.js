@@ -1,39 +1,99 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import { appColors } from "../colors";
+const { width, height } = Dimensions.get("screen");
 
 export default (styles = StyleSheet.create({
   backgroundContainer:{
     flex: 1,
     width:null,
     height:null,
-    justifyContent: 'center',
+  },
+  container:{
+    //justifyContent: 'center',
+  },
+  titleText:{
+    fontFamily: 'Fredericka the Great',
+    fontSize: 28,
+    marginVertical:height * 0.05,
+    textAlign:'center',
+    color:'#FFFFFF'
+  },
+  progressBar:{
+    marginHorizontal:10,
+    marginBottom:height * 0.08,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  },
+  progressBarText:{
+    color:'#FFFFFF',
+    width:32,
+    fontFamily: 'Denk One',
+    fontSize: 18,
+    textAlign:'center',
+    margin:2,
+  },
+  question:{
+    marginHorizontal:15,
+    borderWidth:1,
+    borderRadius:5,
+  },
+  questionText:{
+    fontSize: 18,
+    textAlign:'center',
+    fontFamily: 'Denk One',
+  },
+  answers:{
+    height: height * 0.4,
+    marginHorizontal: 10,
+    marginVertical:height * 0.05,
+    marginBottom: 10,
+    flexDirection: 'row',
+    flexWrap:'wrap',
+    justifyContent:'space-around',
     alignItems: 'center',
-    opacity:0.9,
+    alignContent:'space-around'
+  },
+  answerCard: {
+    margin:15,
+    width: width * 0.25,
+    height: height * 0.15,
+    borderRadius: 5,
+    borderWidth: 2,
+    justifyContent:'center',
+  },
+  cardText:{
+    fontFamily: 'Denk One',
+    fontSize: 22,
+    textAlign:'center',
+    margin:2,
+  },
+  cardImg:{
+    width: width * 0.18,
+    height: height * 0.10,
+    alignSelf: "center",
   },
   modalContainer: {
-    marginTop: "45%",
+    marginTop: height * 0.1,
     alignSelf: "center",
     alignItems: "center",
-    height: "35%",
-    width: '80%',
-    borderRadius: 15,
-    opacity: 0.9,
+    width: width * 0.8,
+    height: height * 0.6,
+    opacity: 0.95,
     overflow: 'hidden',
-    borderStyle: 'solid',
+  },
+  modalIn:{
+    marginTop:  height * 0.15,
   },
   titleModal: {
-    fontSize: 22,
+    fontSize: 26,
     textAlign: "center",
-    color: "#FFFFFF",
-    paddingTop: 10,
-    fontFamily: "Indie Flower",
+    fontFamily: "Fredericka the Great",
   },
   subtitleModal: {
-    fontSize: 18,
+    fontSize: 24,
     textAlign: "center",
-    color: "#FFFFFF",
-    paddingVertical: 15,
-    fontFamily: "Indie Flower",
+    fontFamily: 'Denk One',
   },
   buttonModal: {
     borderWidth: 2,
@@ -44,12 +104,7 @@ export default (styles = StyleSheet.create({
     justifyContent: "center",
     borderRadius: 15,
     backgroundColor: appColors.lionColorDark,
-    paddingVertical: 10,
-  },
-  progressBar:{
-    alignItems: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+
   },
   bottomLine:{
     flexDirection: "row",
@@ -75,5 +130,27 @@ export default (styles = StyleSheet.create({
     fontFamily: 'Denk One',
     fontSize: 26,
     marginTop:10,
+  },
+  playButtonText: {
+    fontFamily: "Fredericka the Great",
+    fontSize: 30,
+    margin: 10,
+    color: appColors.lionOrangeDark,
+  },
+  playButton: {
+    borderWidth: 5,
+    borderColor: appColors.lionColorDark,
+    height: height * 0.1,
+    width: width * 0.3,
+    alignItems: "center",
+    borderRadius: 30,
+    backgroundColor: appColors.lionColor
+  },
+  playButtonOutside:{
+    marginTop:15,
+    borderWidth: 5,
+    borderColor: appColors.lionOrange,
+    borderRadius: 37,
+    alignSelf: "center",
   },
 }));

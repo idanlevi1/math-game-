@@ -7,15 +7,16 @@ import Toast from 'react-native-simple-toast';
 export default BonusElement = props => {
     bonusAction = () => {
         if(props.bonusStatus)
-            props.navigation.navigate('Bonus')
+            props.navigation.navigate('Bonus',{setBonus:props.setBonus,navigation:props.navigation})
         else{
             //Calculate BONUS time left
             let bonus = props.userBonus
             let msg = 'New bonus! Please refresh and get it'
             let lastDay = new Date()
+            let bonusDate = new Date(bonus)
             lastDay.setDate(lastDay.getDate()-1);
-            if(bonus>lastDay){
-                let nextBonusTime = (bonus - lastDay)/(3600*1000)
+            if(bonusDate>lastDay){
+                let nextBonusTime = (bonusDate - lastDay)/(3600*1000)
                 let nextBonusHours = Math.floor(nextBonusTime)
                 let nextBonusMinutes = Math.floor((nextBonusTime % 1)*60)
                 msg = 'New bonus every 24 hours\n' + nextBonusHours + ' hours and ' + nextBonusMinutes + ' minutes left for the next bonus'

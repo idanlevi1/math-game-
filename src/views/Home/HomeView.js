@@ -11,12 +11,10 @@ import styles from "./HomeStyle";
 
 const logoImg = require('../../../assets/images/Logo.png');
 const wallBackground = require('../../../assets/images/wall.jpg')
-// const animationTypes = ["jello","bounce","pulse","swing","wobble"]
-// animationTypes[Math.floor(Math.random()*animationTypes.length)]
 
 class HomeView extends Component {
   render() {
-    const {coins,stars,sound, navigation, bonusStatus,userBonus} = this.props
+    const {coins, stars, sound, navigation, bonusStatus, userBonus, setBonus} = this.props
     return (
         <ImageBackground
           style={styles.backgroundContainer}
@@ -28,7 +26,8 @@ class HomeView extends Component {
                 <BonusElement 
                 bonusStatus={bonusStatus} 
                 navigation={navigation} 
-                userBonus={userBonus} 
+                userBonus={userBonus}
+                setBonus={setBonus}
                 />
                 <Coins coins={coins}/>
             </View>

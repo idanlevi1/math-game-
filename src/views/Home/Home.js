@@ -14,14 +14,11 @@ export default class Home extends React.Component {
   componentDidMount = async() => {
     //Calculate BONUS status
     let bonus = this.props.userStore.getUser.bonus
-    let bonusStatus = true
     if(bonus){
       let lastDay = new Date()
       lastDay.setDate(lastDay.getDate()-1);
-      if(bonus>lastDay){
-        bonusStatus = false
-        this.setState({bonusStatus})
-      }
+      if(new Date(bonus)>lastDay)
+        this.setState({bonusStatus:false})
     }
     
     // try {
@@ -34,6 +31,11 @@ export default class Home extends React.Component {
     //   console.warn("Couldn't Play audio", err)
     // }
   };
+
+  handleSetBonus = (coins) =>{
+    this.props.userStore.setBonus(coins)
+    this.setState({bonusStatus:false})
+  }
 
   switchSound = async() => {
     this.props.userStore.switchSound();
@@ -54,6 +56,7 @@ export default class Home extends React.Component {
       navigation={this.props.navigation}
       bonusStatus= {this.state.bonusStatus}
       userBonus={bonus}
+      setBonus={this.handleSetBonus}
       />
     );
   }

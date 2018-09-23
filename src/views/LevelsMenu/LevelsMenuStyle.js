@@ -11,13 +11,17 @@ export default styles = StyleSheet.create({
     opacity:0.9,
   },
   levelsView: {
-    height: height * 0.55 ,
+    marginTop:15,
+    height: height * 0.65,
     width: width * 0.85,
     alignSelf: 'center',
-    justifyContent: 'center',
+  },
+  levelsLine:{
+    height: height * 0.4,
+    width: width * 0.4,
   },
   rowIcons: {
-    height: height *  0.25,
+    height: height *  0.15,
     flexDirection: "row",
     justifyContent: "space-around"
   },
@@ -28,11 +32,15 @@ export default styles = StyleSheet.create({
     margin: 10,
   },
   levelContainer:{
-    height: height*0.5 ,
-    width: width*0.55 ,
+    marginTop: height*0.04,
+    marginLeft: height*0.04,
+    borderRadius: 100,
+    height: height*0.22,
+    width: height*0.22,
     justifyContent:'center',
     alignItems:'center',
   },
+  imgBGCard:{width:height*0.3,height:height*0.3},
   starsLine:{
     flexDirection: "row",
   },

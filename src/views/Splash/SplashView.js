@@ -22,7 +22,7 @@ export default class SplashScreen extends React.Component {
     })
     const translateY = this.animated.interpolate({
       inputRange: [0,1],
-      outputRange: [height*1.4,0]
+      outputRange: [height*1.5,0]
     })
     return (
       <View style={{flex:1}}>

@@ -7,6 +7,9 @@ export const appColors = {
     lionOrangeDark:'#ff6600',
 }
 
-export const whiteText = {
-    color:'#FFFFFF',
+export const questionColors = {
+    lionColor:'#FFD54F',
+    lionColorDark:'#FABC36',
+    lionOrange:'#FF8333',
+    lionOrangeDark:'#ff6600',
 }

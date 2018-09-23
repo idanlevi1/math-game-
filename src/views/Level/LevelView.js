@@ -3,26 +3,41 @@ import { View, Text, TouchableOpacity, ImageBackground, Modal, Dimensions } from
 const { width } = Dimensions.get("screen");
 import BackButton from '../buttons/BackButton'
 import styles from './LevelStyle'
-import {appColors} from '../colors'
+import {appColors,questionColors} from '../colors'
 import * as Progress from 'react-native-progress';
 import AnimatableImage from '../components/AnimatableImage'
+import Answer from './Answer'
+import _ from 'lodash';
 
 class LevelView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      levelTime: 1,
+      timeLeft: 1,
       fullTime: 1,
       intervalId: null,
       finish: false,
-      won: false,
+      answers: null,
+      question:null,
+      correctAnswer:null,
     };
   }
 
   componentDidMount() {
-    let levelTime = 2//this.props.level.time + this.props.shoppingTime - 1 ;
+    const {question} = this.props
+    let timeLeft = this.props.level.time + this.props.shoppingTime - 1 ;
     var intervalId = setInterval(this.timer, 1000);
-    this.setState({ levelTime, intervalId, fullTime: levelTime });
+    let answers = question.incorrect_answers
+    answers.push(question.correct_answer);
+    let shuffleAnswers = _.shuffle(answers)
+    this.setState({ 
+      timeLeft, 
+      intervalId, 
+      fullTime: timeLeft,
+      answers:shuffleAnswers,
+      correctAnswer:question.correct_answer,
+      result:false,
+     });
   }
 
   componentWillUnmount() {
@@ -30,9 +45,9 @@ class LevelView extends Component {
   }
 
   timer = () => {
-    let levelTime = this.state.levelTime - 1;
-    if(levelTime >= 0) 
-        this.setState({ levelTime });
+    let timeLeft = this.state.timeLeft - 1;
+    if(timeLeft >= 0) 
+        this.setState({ timeLeft });
     else {
       clearInterval(this.state.intervalId);
       this.setState({ finish: true });
@@ -45,49 +60,97 @@ class LevelView extends Component {
     this.props.navigation.goBack();
   }
 
+  handleCheckLevel = async(result) => {
+    clearInterval(this.state.intervalId);
+    await setTimeout(() => {
+      if(result){
+        this.props.onPlayerWon(this.state.timeLeft, this.state.fullTime)
+      }
+      else{
+        this.props.onPlayerLost()
+      }
+      this.setState({finish:true,result})
+      , 1000})
+  }
+
   render() {
-    const { level, coins, stars, userLevelDetails, sound, onPlayerWon, onPlayerLost, onCheckLevel, navigation } = this.props;
+    const { level, question, stars, userLevelDetails, sound, onPlayerWon, onPlayerLost, onCheckLevel, navigation } = this.props;
+    const colors = Object.values(questionColors)
+    const color = colors[level.number%colors.length]
     return (
       <ImageBackground
       style={styles.backgroundContainer}
-      source={require('../../../assets/images/wall.jpg')}
+      source={require('../../../assets/images/wallTorkiz.jpg')}
       >
-        <View style={styles.progressBar}>
-          <AnimatableImage source={require('../../../assets/images/timer.png')} />
-          <View style={{marginHorizontal: 5,}}/>
-          <Progress.Bar 
-          progress={this.state.levelTime / this.state.fullTime} 
-          width={width*0.75}
-          height={30}
-          color={appColors.lionOrange}
-          unfilledColor={appColors.lionColor}
-          />
+        <View style={styles.container}>
+          <Text style={styles.titleText}>Level {level.number} - {level.name}</Text>
+          <View style={styles.progressBarContainer}>
+            <View style={styles.progressBar}>
+              <AnimatableImage source={require('../../../assets/images/timer.png')} size={35}/>
+              <Progress.Bar
+              progress={this.state.timeLeft / this.state.fullTime}
+              width={width*0.6}
+              height={35}
+              color={appColors.lionOrange}
+              unfilledColor={appColors.lionColor}
+              />
+            <Text style={styles.progressBarText}>{this.state.timeLeft}</Text>
+            </View>
+          </View>
+          <View style={[styles.question,{backgroundColor:color}]}>
+            <Text style={styles.questionText}>{question.question.replace(/\&|#|;/g, ' ')}</Text>
+          </View>
+          <View style={styles.answers}>
+          { this.state.answers && 
+            this.state.answers.map((a,i)=>
+              <Answer
+              answer={this.state.answers[i]}
+              key={i}
+              index={i}
+              disabledCard={this.state.finish}
+              onCheckLevel={this.handleCheckLevel}
+              levelNumber={level.number}
+              color={color}
+              correctAnswer={this.state.correctAnswer}
+              />)
+          }
+          </View>
+          <View style={styles.bottomLine}>
+            <BackButton navigation={navigation}/>
+          </View>
         </View>
-        <Text style={[styles.titleModal,{color:'#FFFFFF'}]}>{this.state.levelTime} Second left</Text>
-        <View style={styles.bottomLine}>
-          <BackButton navigation={navigation}/>
-        </View>
-        
+
         {this.state.finish &&
-        <Modal
-          visible={this.state.finish}
-          animationType={'slide'}
-          transparent
-          onRequestClose={this.closeModal}
-          >
-            <ImageBackground style={styles.modalContainer} source={require('../../../assets/images/borderResult.png')}>
-                <Text style={styles.titleModal}>{this.state.won ? 'WON!' : 'LOST!'} </Text>
-                <Text style={styles.subtitleModal}>{this.state.won ? 'bla bla winner!' : 'bla bla - loser!'}</Text>        
-                <TouchableOpacity
-                rounded
-                style={styles.buttonModal}
-                onPress={() => { this.closeModal() }}
-                >
-                    <Text style={styles.subtitleModal}>Close</Text>
-                </TouchableOpacity>
-            </ImageBackground>
-        </Modal>
-        }
+          <Modal
+            visible={this.state.finish}
+            animationType={'slide'}
+            transparent
+            onRequestClose={this.closeModal}
+            >
+              <ImageBackground resizeMode='contain' style={styles.modalContainer} source={require('../../../assets/images/borderResult.png')}>
+                <View style={styles.modalIn}> 
+                  {this.state.result ? 
+                    <View>
+                      <Text style={styles.titleModal}>Won!</Text>
+                      <Text style={styles.subtitleModal}>Time: {this.state.fullTime - this.state.timeLeft}</Text>
+                    </View>
+                  : 
+                    <View>
+                      <Text style={styles.titleModal}>{'Lost!'} </Text>
+                      <Text style={styles.subtitleModal}>{'Try again'}</Text> 
+                    </View>
+                  }
+                  <TouchableOpacity
+                  rounded
+                  style={styles.buttonModal}
+                  onPress={() => { this.closeModal() }}
+                  >
+                      <Text style={styles.subtitleModal}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </ImageBackground>
+          </Modal>
+          }
       </ImageBackground>
     );
   }

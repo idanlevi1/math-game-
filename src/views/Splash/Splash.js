@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import SplashView from "./SplashView";
 import AppNav from "../../nav/AppNav";
 import { observer, inject } from "mobx-react";

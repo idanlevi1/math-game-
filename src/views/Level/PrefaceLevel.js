@@ -1,10 +1,9 @@
 import React from 'react';
-import {View, Text, ImageBackground, ActivityIndicator } from 'react-native';
+import {View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import styles from "./LevelStyle";
 
 const PrefaceLevel = (props) => {
-    console.log(props.level)
-    const {level,personalRecord,bonusTime} = props
+    const {level, personalRecord, bonusTime, startPlay} = props
     return (
         <ImageBackground resizeMode={"stretch"} style={styles.prefaceLevelContainer} source={require('../../../assets/images/wallBez.jpg')}>
             <ImageBackground resizeMode={"stretch"} style={styles.prefaceLevelContainer} source={require('../../../assets/images/prefaceLevelBorder.png')}>
@@ -16,8 +15,11 @@ const PrefaceLevel = (props) => {
                     <Text style={styles.prefaceText}>Record: {level.record} Second</Text>
                     {personalRecord!=999 && <Text style={styles.prefaceText}>Your Record: {personalRecord} Second</Text>}
                     <Text style={styles.prefaceText}>Bonus Time: {bonusTime} Second</Text>
-
-                    <ActivityIndicator style={{marginTop: 40}} size='large' color='#FFFFFF' /> 
+                    <TouchableOpacity style={styles.playButtonOutside} onPress={startPlay}>
+                        <View style={styles.playButton}>
+                            <Text style={styles.playButtonText}>Start</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </ImageBackground>

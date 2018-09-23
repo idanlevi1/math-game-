@@ -13,18 +13,11 @@ export class levelsStore {
     .once('value' , snapshot => this.levels = Object.assign(this.levels, snapshot.val()))
   }
 
-  @action async updateLevelNewRecord(levelNumber,newRecordTime){
-    this.getLevels[levelNumber].record = newRecordTime
+  @action updateLevelNewRecord= async(levelNumber,newRecordTime)=>{
+    this.levels[levelNumber].record = newRecordTime
     await firebase.database().ref('levels')
     .child(levelNumber)
     .update({record:newRecordTime})
-  }
-
-  @action async updateLevelStars(levelNumber,newStars){
-    this.getLevels[levelNumber].stars = newStars
-    await firebase.database().ref('levels')
-    .child(levelNumber)
-    .update({stars:newStars})
   }
   
 }

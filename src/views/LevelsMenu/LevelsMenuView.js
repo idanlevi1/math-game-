@@ -8,15 +8,29 @@ import BackButton from '../buttons/BackButton'
 
 class LevelsMenuView extends Component {
   render() {
-    const {coins,stars,levels, userLevels,navigation} = this.props
-    const levelsElements = Object.keys(levels).map(keyLevel => 
-      <LevelCrad 
-      key={keyLevel} 
-      level={levels[keyLevel]} 
-      allUserStars={stars}
-      userLevelDetails={userLevels && userLevels[keyLevel - 1]}
-      navigation={navigation}
-      />
+    const {coins,stars,levels, userLevels, navigation} = this.props
+    let levelsElements1 = [], levelsElements2 = []
+    const helfLength = Math.ceil(Object.keys(levels).length/2)
+     Object.keys(levels).forEach((keyLevel,index) => {
+      if(index+1 <= helfLength)
+        levelsElements1.push(
+        <LevelCrad 
+        key={keyLevel} 
+        level={levels[keyLevel]} 
+        allUserStars={stars}
+        userLevelDetails={userLevels && userLevels[keyLevel - 1]}
+        navigation={navigation}
+        />)
+      else
+        levelsElements2.push(
+        <LevelCrad 
+        key={keyLevel} 
+        level={levels[keyLevel]} 
+        allUserStars={stars}
+        userLevelDetails={userLevels && userLevels[keyLevel - 1]}
+        navigation={navigation}
+        />)
+     }
     )
     return (
       <ImageBackground style={styles.backgroundContainer} source={require('../../../assets/images/wall.jpg')}>
@@ -25,9 +39,16 @@ class LevelsMenuView extends Component {
             <Coins coins={coins}/>
         </View>
       <View style={styles.levelsView}>
-        <ScrollView horizontal>
-          {levelsElements}
-        </ScrollView>
+        <View styles={styles.levelsLine}>
+          <ScrollView horizontal>
+            {levelsElements1}
+          </ScrollView>
+        </View>
+        <View styles={styles.levelsLine}>
+          <ScrollView horizontal>
+            {levelsElements2}
+          </ScrollView>
+        </View>
       </View>
       <View style={styles.bottomLine}>
         <BackButton navigation={navigation}/>

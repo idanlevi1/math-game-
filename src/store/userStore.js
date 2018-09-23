@@ -38,6 +38,7 @@ export class userStore {
       personalRecord:999
       }
     }
+    Object.assign(this.user.userLevels || {} ,newLevel)
     await firebase.database().ref('users/'+this.user.appId +'/userLevels')
     .update(newLevel)
   }
@@ -54,11 +55,20 @@ export class userStore {
     await firebase.database().ref('users').child(this.user.appId).update({coins:newCoins})
   }
 
-  @action async updateNewPersonalRecord(levelNumber,newRecordTime){
+  @action updateNewPersonalRecord = async(levelNumber,newRecordTime) =>{
     this.user.userLevels[levelNumber].personalRecord = newRecordTime
     await firebase.database().ref('users/'+this.user.appId +'/userLevels')
     .child(levelNumber)
     .update({personalRecord:newRecordTime})
+  }
+
+  @action updateLevelStars = async(levelNumber,additionStars)=>{
+    this.user.userLevels[levelNumber].stars += additionStars
+    let newStars = this.user.userLevels[levelNumber].stars
+    await firebase.database().ref('users/'+this.user.appId +'/userLevels')
+    .child(levelNumber)
+    .update({stars:newStars})
+    this.addStars(additionStars)
   }
 
   @action switchSound =()=> {
@@ -76,10 +86,10 @@ export class userStore {
         this.user = Object.assign(this.user, dbRes[appId]);
       }
       else{
+        exist = false
         this.user.appId= appId
         this.user.currentLocale = await Expo.DangerZone.Localization.getCurrentLocaleAsync()
-        ref.child(appId).set(this.user)
-        exist = false
+        await ref.child(appId).set(this.user)
       }
     })
     return exist 
@@ -89,6 +99,16 @@ export class userStore {
     let notificationSettingsUser = await registerForPushNotificationsAsync()
     await updateNotificationSettingUser(notificationSettingsUser,this.user.appId)
     this.user = Object.assign(this.user, {settings: notificationSettingsUser});
+  }
+
+  @action setBonus = async(bonusCoins) => {
+    let newCoins = this.user.coins + bonusCoins
+    let newData = {
+      bonus: new Date(),
+      coins:newCoins
+    }
+    this.user = Object.assign(this.user, newData);
+    await firebase.database().ref('users').child(this.user.appId).update(newData)
   }
 }
 

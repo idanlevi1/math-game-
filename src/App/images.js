@@ -1,5 +1,9 @@
 export default images = [
     require("../../assets/images/wall.jpg"),
+    require("../../assets/images/wallBez.jpg"),
+    require("../../assets/images/wallYellow.jpg"),
+    require("../../assets/images/wallRed.jpg"),
+    require("../../assets/images/wallTorkiz.jpg"),
     require("../../assets/images/Logo.png"),
     require("../../assets/images/lionIcon.png"),
     require("../../assets/images/lionIcon180-180.png"),
@@ -10,9 +14,7 @@ export default images = [
     require('../../assets/images/bonusGray.png'),
     require("../../assets/images/timer.png"),
     require("../../assets/images/letter.png"),
-    require("../../assets/images/borderLevel.png"),
-    require("../../assets/images/border1.png"),
-    require("../../assets/images/borderForest.png"),
-    require("../../assets/images/borderLeafs.png"),
     require("../../assets/images/borderResult.png"),
+    require("../../assets/images/questionsSign.png"),
+    require("../../assets/images/prefaceLevelBorder.png"),
 ]
