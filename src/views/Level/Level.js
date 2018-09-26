@@ -16,13 +16,13 @@ class Level extends Component {
 
   async componentDidMount() {
     const { level, userLevelDetails } = this.props.navigation.state.params
-    const { questionsHistory } = this.props.userStore.getUser
-    console.log('questionsHistory',questionsHistory)
-    
+    const {userStore} = this.props
+    const { questionsHistory } = userStore.getUser
+
     // if first time - iniialize level
     if(!userLevelDetails){
-      await this.props.userStore.initializeLevel(level.number)
-      newUserLevelDetails = this.props.userStore.userLevels
+      await userStore.initializeLevel(level.number)
+      newUserLevelDetails = userStore.getUserLevels[level.number]
     }
     else
       newUserLevelDetails = userLevelDetails
@@ -32,14 +32,18 @@ class Level extends Component {
     else if(level.number>10)
       difficulty = 'hard'
     let question = await getQuestion(difficulty,level.type)
-    if(question)
-      while(1){
+    if(question){
+      let counter = 0
+      while(counter<10){
         if(!questionsHistory || !questionsHistory.includes(question.question))
           break;
+        else
+          question = await getQuestion(difficulty,level.type)
+        counter++
       }
-    else{
-      console.log('ERROR',question)
     }
+    else
+      console.log('ERROR',question)
     this.setState({question,userLevelDetails:newUserLevelDetails})
   }
 
@@ -55,6 +59,8 @@ class Level extends Component {
     await this.starsHandle(timeIsTake, fullTime)
     //COINS handle
     await this.coinsHandle(bonusCoins,timeLeft)
+    //Question handle
+    await this.props.userStore.addQuestion(this.state.question.question)
   }
 
   playerLost = () => {
@@ -67,14 +73,13 @@ class Level extends Component {
     const { updateNewPersonalRecord } = userStore
     const { updateLevelNewRecord } = levelsStore
     const {userLevelDetails} = this.state
-
     let personalRecord = userLevelDetails.personalRecord
     let bonusCoins = 0
     if(timeIsTake < personalRecord ){
       await updateNewPersonalRecord(level.number,timeIsTake)
       if(timeIsTake < level.record ){
         await updateLevelNewRecord(level.number,timeIsTake)
-        bonusCoins = level.number * 10
+        bonusCoins = level.number * 2
       }
     }
     return bonusCoins
@@ -103,13 +108,13 @@ class Level extends Component {
   coinsHandle = async(bonusCoins,timeLeft) =>{
     const { level } = this.props.navigation.state.params
     const { addCoins } = this.props.userStore
-    let winningCoins = (timeLeft * level.number) + bonusCoins
+    let winningCoins = (Math.ceil(timeLeft*0.7) * level.number) + bonusCoins
     await addCoins(winningCoins)
   }
  
   render() {
     const { userStore, navigation} = this.props;
-    const { level, userLevelDetails } = navigation.state.params
+    const { level } = navigation.state.params
     const { coins, stars, shopping } = userStore.getUser;
 
     return (

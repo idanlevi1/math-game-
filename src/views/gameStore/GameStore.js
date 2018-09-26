@@ -3,8 +3,9 @@ import GameStoreView from "./GameStoreView";
 
 class GameStore extends Component {
   render() {
+    const {navigation} = this.props.navigation.state.params
     return (
-        <GameStoreView />
+        <GameStoreView navigation={navigation}/>
     )
   }
 }

@@ -8,8 +8,10 @@ export const appColors = {
 }
 
 export const questionColors = {
-    lionColor:'#FFD54F',
-    lionColorDark:'#FABC36',
+    lionColorFirst:'#ffedb3',
+    lionColor:'#e6b000',
+    lionColorDark:'#b38900',
+    lionColorpitch:'#ffb380',
     lionOrange:'#FF8333',
     lionOrangeDark:'#ff6600',
 }

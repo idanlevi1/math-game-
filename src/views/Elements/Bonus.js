@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import styles from "./ElementsStyles";
 import AnimatableImage from '../components/AnimatableImage'
 import Toast from 'react-native-simple-toast';
@@ -42,7 +42,7 @@ export default BonusElement = props => {
                     source={require('../../../assets/images/bonusGray.png')}
                     />
                 }
-                
+                <Text style={[styles.text,{color:props.bonusStatus?'#EA5331':'#B5B5B5'}]}>Bonus</Text>
             </View>
         </TouchableOpacity>
     );

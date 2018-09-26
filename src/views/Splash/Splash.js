@@ -29,6 +29,10 @@ class Splash extends Component {
   async componentDidMount() {
     StatusBar.setHidden(true);
     const {userStore, levelsStore, shoppingStore} = this.props
+    //loading images
+    const imageAssets = cacheImages(images)
+    await Promise.all([...imageAssets]);
+    this.setState({progress:0.15})
     //check if user exist - load all data, if not - register user
     let existResult = await userStore.checkExistUser(Expo.Constants.deviceId)
     this.setState({progress:0.35})
@@ -42,10 +46,6 @@ class Splash extends Component {
     //loading shopping store data
     await shoppingStore.loadingShoppingItems()
     this.setState({progress:0.62})
-    //loading images
-    const imageAssets = cacheImages(images)
-    await Promise.all([...imageAssets]);
-    this.setState({progress:0.76})
     //loading fonts
     await Font.loadAsync(fonts);
     this.setState({progress:0.87})

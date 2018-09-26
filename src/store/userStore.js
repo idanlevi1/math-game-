@@ -5,7 +5,7 @@ import {registerForPushNotificationsAsync,updateNotificationSettingUser} from '.
 export class userStore {
   @observable user = {
     appId:null,
-    coins:0,
+    coins:25,
     stars:0,
     userLevels: null,
     bonus: null,
@@ -14,7 +14,8 @@ export class userStore {
       time:0,
       stars:0,
       totalPay:0,
-    }
+    },
+    questionsHistory: null,
   }
   
   @observable sound = true
@@ -24,13 +25,9 @@ export class userStore {
   }
 
   @computed get getUserLevels(){
-    if(this.user.userLevels){
-      let userLevelsArray = [];
-      this.user.userLevels.forEach(l=> {typeof l !== 'undefined' && userLevelsArray.push(l)})
-      return userLevelsArray
-    }
-    return null
+    return this.user.userLevels
   }
+
   @action initializeLevel = async(levelNumber) => {
     let newLevel = { [levelNumber]: {
       levelNumber:levelNumber,
@@ -38,7 +35,7 @@ export class userStore {
       personalRecord:999
       }
     }
-    Object.assign(this.user.userLevels || {} ,newLevel)
+    this.user.userLevels = Object.assign(this.user.userLevels || {} ,newLevel)
     await firebase.database().ref('users/'+this.user.appId +'/userLevels')
     .update(newLevel)
   }
@@ -53,6 +50,20 @@ export class userStore {
     let newCoins = this.user.coins + num
     this.user.coins = newCoins
     await firebase.database().ref('users').child(this.user.appId).update({coins:newCoins})
+  }
+
+  @action addQuestion = async(Q) => {
+    let updateDB = false
+    if(!this.user.questionsHistory){
+      this.user.questionsHistory = []
+      updateDB = true
+    }
+    if(!this.user.questionsHistory.includes(Q)){
+      this.user.questionsHistory.push(Q)
+      updateDB = true
+    }
+    if(updateDB)
+      await firebase.database().ref('users').child(this.user.appId).update({questionsHistory:this.user.questionsHistory})
   }
 
   @action updateNewPersonalRecord = async(levelNumber,newRecordTime) =>{
@@ -84,6 +95,10 @@ export class userStore {
       let dbRes = snapshot.val()
       if(dbRes){
         this.user = Object.assign(this.user, dbRes[appId]);
+        if(dbRes[appId].userLevels)
+          this.user.userLevels = Object.assign({}, dbRes[appId].userLevels);
+        if(dbRes[appId].questionsHistory)
+          this.user.questionsHistory = dbRes[appId].questionsHistory
       }
       else{
         exist = false

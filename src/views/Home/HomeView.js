@@ -56,7 +56,7 @@ class HomeView extends Component {
                     <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.lionColorDark}/>
                     </Animatable.View>
                 </TouchableOpacity>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.bounce(500); navigation.navigate('GameStore')}}>
+                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.bounce(500); navigation.navigate('GameStore',{navigation:navigation})}}>
                     <Animatable.View 
                     style={styles.iconButton}
                     ref={(ref)=>{this.store = ref}}

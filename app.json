@@ -2,24 +2,22 @@
   "expo": {
     "name": "Lion Math",
     "description": "Math Game",
-    "slug": "LionMath",
+    "slug": "LionMathGame",
     "version": "1.0.0",
-    "icon": "./assets/images/lionIcon180-180.png",
+    "icon": "./assets/images/Logo200X200.png.png",
     "sdkVersion": "29.0.0",
     "privacy": "public",
     "ios": {
-      "bundleIdentifier": "com.idanlevi.mathgame"
+      "bundleIdentifier": "com.idanlevi.lionmathgame"
     },
     "android": {
-      "package": "com.idanlevi.mathgame",
+      "package": "com.idanlevi.lionmathgame",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/lionIcon180-180.png",
-        "backgroundColor": "#FF8333"
+        "foregroundImage": "./assets/images/Logo200X200.png.png"
       }
     },
     "notification": {
-      "icon":"./assets/images/lionIcon180-180.png"
-    },
-    "primaryColor":"#FF8333"
+      "icon":"./assets/images/Logo200X200.png.png"
+    }
   }
 }

@@ -4,6 +4,7 @@ import styles from "./LevelsMenuStyle";
 import * as Animatable from 'react-native-animatable';
 import Toast from 'react-native-simple-toast';
 import Stars from '../Elements/Stars'
+import GrayStar from '../Elements/GrayStar'
 import {questionColors} from '../colors'
 
 class LevelCrad extends Component {
@@ -19,9 +20,9 @@ class LevelCrad extends Component {
   getStarIcons = (stars) =>{
     let elements = []
     for(var i=0; i<stars ;i++)
-      elements.push(<Stars withoutText emptyStar={false} size={33} key={i}/>)
+      elements.push(<Stars withoutText size={32} key={i}/>)      
     for(let j=i; j<3 ;j++)
-      elements.push(<Stars withoutText emptyStar size={33} key={j}/>)
+      elements.push(<GrayStar withoutText size={32} key={j}/>)
     return elements
   }
 
@@ -35,11 +36,20 @@ class LevelCrad extends Component {
       <TouchableOpacity onPress={this.onLevelClick}>
         <ImageBackground resizeMode='stretch' style={[styles.imgBGCard,disableLevel&&{opacity:0.5}]} source={require('../../../assets/images/letter.png')}>
           <View style={[styles.levelContainer,{backgroundColor:color}]}>
+            {!playBefore ?
             <Animatable.View style={styles.starsLine} animation="pulse" easing="ease-in" iterationCount="infinite">
-              {this.getStarIcons(!playBefore ? userLevelDetails.stars : 0)}
+              {this.getStarIcons(userLevelDetails.stars)}
             </Animatable.View>
+            :
+            <View style={styles.starsLine}>
+              {this.getStarIcons(0)}
+            </View>
+            }
             <Text style={styles.cardTextTitle}>{level.number}</Text>
             <Text style={styles.cardText}>{level.name}</Text>
+            <View style={styles.priceCrad}>
+              <Text style={[styles.priceText,{color:color}]}>{level.price} coins</Text>
+            </View>
           </View>
         </ImageBackground>
       </TouchableOpacity>

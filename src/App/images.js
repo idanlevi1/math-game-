@@ -7,6 +7,7 @@ export default images = [
     require("../../assets/images/Logo.png"),
     require("../../assets/images/lionIcon.png"),
     require("../../assets/images/lionIcon180-180.png"),
+    require("../../assets/images/Logo200X200.png.png"),
     require("../../assets/images/coins.png"),
     require("../../assets/images/star.png"),
     require("../../assets/images/starGray.png"),
@@ -17,4 +18,6 @@ export default images = [
     require("../../assets/images/borderResult.png"),
     require("../../assets/images/questionsSign.png"),
     require("../../assets/images/prefaceLevelBorder.png"),
+    require("../../assets/images/correct.png"),
+    require("../../assets/images/incorrect.png"),
 ]

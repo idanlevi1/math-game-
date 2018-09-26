@@ -1,6 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
 const { width, height } = Dimensions.get("screen");
-import {appColors} from '../colors'
 
 export default styles = StyleSheet.create({
   backgroundContainer:{
@@ -13,7 +12,7 @@ export default styles = StyleSheet.create({
   levelsView: {
     marginTop:15,
     height: height * 0.65,
-    width: width * 0.85,
+    width: width * 0.9,
     alignSelf: 'center',
   },
   levelsLine:{
@@ -35,23 +34,48 @@ export default styles = StyleSheet.create({
     marginTop: height*0.04,
     marginLeft: height*0.04,
     borderRadius: 100,
+    borderWidth:1,
     height: height*0.22,
     width: height*0.22,
     justifyContent:'center',
     alignItems:'center',
   },
-  imgBGCard:{width:height*0.3,height:height*0.3},
+  imgBGCard:{
+    width:height*0.3,
+    height:height*0.3,
+  },
   starsLine:{
     flexDirection: "row",
   },
   cardTextTitle:{
     fontFamily: "Fredericka the Great",
-    fontSize: 32,
+    fontSize: 34,
   },
   cardText:{
     fontFamily: "Fredericka the Great",
-    fontSize: 26,
+    fontSize: 18,
     textAlign:'center',
-    marginBottom: 5,
+    marginBottom: 10,
+  },
+  priceCrad:{
+    opacity:0.9,
+    position:'absolute',
+    zIndex:99,
+    left:height*0.22-(54),
+    top:height*0.22-(54),
+    width:48,
+    height:48,
+    justifyContent:'center',
+    alignItems:'center',
+    margin:2,
+    borderWidth:1,
+    borderRadius:24,
+    borderColor: 'gray',
+    backgroundColor:'#000000',
+  },
+  priceText:{
+    fontFamily: "Merienda",
+    fontSize: 12,
+    textAlign:'center',
   },
 });
