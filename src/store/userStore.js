@@ -28,11 +28,11 @@ export class userStore {
     return this.user.userLevels
   }
 
-  @action initializeLevel = async(levelNumber) => {
+  @action initializeLevel = async(levelNumber,levelTime) => {
     let newLevel = { [levelNumber]: {
       levelNumber:levelNumber,
       stars:0,
-      personalRecord:999
+      personalRecord:levelTime
       }
     }
     this.user.userLevels = Object.assign(this.user.userLevels || {} ,newLevel)
@@ -50,6 +50,16 @@ export class userStore {
     let newCoins = this.user.coins + num
     this.user.coins = newCoins
     await firebase.database().ref('users').child(this.user.appId).update({coins:newCoins})
+  }
+
+  @action addToShoppingData = async(amount,price,type) => {
+    let newTotalPay = this.user.shopping.totalPay + price
+    this.user.shopping.totalPay = newTotalPay
+    if(type=='stars')
+      this.user.shopping.stars = this.user.shopping.stars + amount
+    else if(type=='time')
+      this.user.shopping.time = this.user.shopping.time + amount
+    await firebase.database().ref('users').child(this.user.appId).child('shopping').update(this.user.shopping)
   }
 
   @action addQuestion = async(Q) => {

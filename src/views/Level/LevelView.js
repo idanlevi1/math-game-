@@ -20,6 +20,7 @@ class LevelView extends Component {
       answers: null,
       question:null,
       correctAnswer:null,
+      winningGameDetails:null,
     };
   }
 
@@ -62,9 +63,10 @@ class LevelView extends Component {
 
   handleCheckLevel = async(result) => {
     clearInterval(this.state.intervalId);
-    await setTimeout(() => {
+    await setTimeout(async() => {
       if(result){
-        this.props.onPlayerWon(this.state.timeLeft, this.state.fullTime)
+        let winningGameDetails = await this.props.onPlayerWon(this.state.timeLeft, this.state.fullTime)
+        this.setState({winningGameDetails})
       }
       else{
         this.props.onPlayerLost()
@@ -132,12 +134,16 @@ class LevelView extends Component {
                   {this.state.result ? 
                     <View>
                       <Text style={styles.titleModal}>Won!</Text>
-                      <Text style={styles.subtitleModal}>Time: {this.state.fullTime - this.state.timeLeft}</Text>
+                      <Text style={styles.subtitleModal}>{this.state.winningGameDetails.timeIsTake} Second</Text>
+                      <Text style={styles.subtitleModal}>{this.state.winningGameDetails.winningStars} Start</Text>
+                      <Text style={styles.subtitleModal}>{this.state.winningGameDetails.winningCoins} Coins</Text>
+                      {this.state.winningGameDetails.newRecord &&
+                        <Text style={[styles.subtitleModal,{color:'#579D09'}]}>New Record!</Text>}
                     </View>
                   : 
                     <View>
                       <Text style={styles.titleModal}>{'Lost!'} </Text>
-                      <Text style={styles.subtitleModal}>{'Try again'}</Text> 
+                      <Text style={[styles.subtitleModal,{marginTop:25}]}>{'Try again'}</Text> 
                     </View>
                   }
                   <TouchableOpacity

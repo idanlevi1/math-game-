@@ -1,25 +1,23 @@
-
-export const buy = (item) =>{
-    switch (type) {
+export const buy = async(item,userStore) =>{
+    switch (item.type) {
         case 'stars':
-            this.buyStars(item)
+            await buyStars(item,userStore)
             break;
         case 'time':
-            this.buyTime(item)
+            await buyTime(item,userStore)
             break;
         default:
             break;
     }
 }
 
-const buyStars =(item)=>{
-    //TODO 
-    //update mobx
-    //update firebase
+const buyStars = async(item,userStore) =>{
+    userStore.addStars(item.amount)
+    userStore.addCoins(-item.price)
+    userStore.addToShoppingData(item.amount,item.price,'stars')
 }
 
-const buyTime =(item)=>{
-    //TODO 
-    //update mobx
-    //update firebase
+const buyTime = async(item,userStore) =>{
+    userStore.addCoins(-item.price)
+    userStore.addToShoppingData(item.amount,item.price,'time')
 }

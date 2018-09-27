@@ -10,11 +10,21 @@ import {questionColors} from '../colors'
 class LevelCrad extends Component {
 
   onLevelClick = () =>{
-    const {level, navigation,userLevelDetails,allUserStars} = this.props
-    if(allUserStars>=level.reqStars)
-      navigation.navigate('Level',{level,userLevelDetails})
+    const {level, navigation, userLevelDetails, allUserStars, allUserCoins, updateLevelMenu} = this.props
+    let canPlay = true
+    let msg = ''
+    if(allUserStars<level.reqStars){
+      canPlay = false
+      msg = 'You need '+level.reqStars +' stars'
+    }
+    else if(allUserCoins<level.price){
+      canPlay = false
+      msg = 'Not enough money - the price is '+level.price +' coins'
+    }
+    if(canPlay)
+      navigation.navigate('Level',{level, userLevelDetails, updateLevelMenu})
     else
-      Toast.show('For this level you need '+level.reqStars +' stars')
+      Toast.show(msg)
   }
 
   getStarIcons = (stars) =>{

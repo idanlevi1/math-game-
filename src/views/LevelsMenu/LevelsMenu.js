@@ -7,8 +7,8 @@ import LevelsMenuView from "./LevelsMenuView";
 @observer
 class LevelsMenu extends Component {
   render() {
-    const { coins, stars } = this.props.userStore.getUser;
     const { levelsStore, userStore ,navigation } = this.props;
+    const { coins, stars } = userStore.getUser;
     return (
       <LevelsMenuView 
       coins={coins} 

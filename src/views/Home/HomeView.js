@@ -12,9 +12,8 @@ import styles from "./HomeStyle";
 const logoImg = require('../../../assets/images/Logo.png');
 const wallBackground = require('../../../assets/images/wall.jpg')
 
-class HomeView extends Component {
-  render() {
-    const {coins, stars, sound, navigation, bonusStatus, userBonus, setBonus} = this.props
+export default HomeView = (props) => {
+    const {coins, stars, sound, navigation, bonusStatus, userBonus, setBonus} = props
     return (
         <ImageBackground
           style={styles.backgroundContainer}
@@ -41,14 +40,14 @@ class HomeView extends Component {
                 />
             </View>
             {/* Play Button */}
-            <TouchableOpacity style={styles.playButtonOutside} onPress={()=>{this.props.onPlay()}}>
+            <TouchableOpacity style={styles.playButtonOutside} onPress={()=>{props.onPlay()}}>
                 <View style={styles.playButton}>
                     <Text style={[styles.text,{fontSize: 44}]}>Play</Text>
                 </View>
             </TouchableOpacity>
             {/* Icons Row */}
             <View style={[styles.rowIcons,{paddingTop:25,marginHorizontal:25,}]}>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.shake(400); this.props.switchSound()}}>
+                <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.shake(400); props.switchSound()}}>
                     <Animatable.View 
                     style={styles.iconButton}
                     ref={(ref)=>{this.soundRef = ref}}
@@ -56,7 +55,10 @@ class HomeView extends Component {
                     <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.lionColorDark}/>
                     </Animatable.View>
                 </TouchableOpacity>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.store.bounce(500); navigation.navigate('GameStore',{navigation:navigation})}}>
+                <TouchableOpacity underlayColor='#fff' onPress={() => {
+                    this.store.bounce(500); 
+                    navigation.navigate('GameStore',{navigation:navigation})
+                }}>
                     <Animatable.View 
                     style={styles.iconButton}
                     ref={(ref)=>{this.store = ref}}
@@ -73,8 +75,6 @@ class HomeView extends Component {
                 </TouchableOpacity>
             </View>
         </ImageBackground>
-    );
-  }
+    )
 }
-
-export default HomeView;
+            

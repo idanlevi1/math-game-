@@ -25,8 +25,24 @@ class Answer extends Component {
         await onCheckLevel(result)
     }
 
+    calcFontSize = (size) =>{
+        if(size<=18)
+            return 22;
+        if(size>45)
+            return 8
+        if(size>38)
+            return 10
+        if(size>30)
+            return 14
+        if(size>24)
+            return 16
+        else
+            return 18
+    }
+
     render(){
-        const {answer, index, disabledCard, levelNumber, color, correctAnswer} = this.props
+        const {answer, disabledCard, color} = this.props
+        const fixAnswer = answer.replace(/\&|#|;/g, ' ')
         return ( 
             <TouchableOpacity onPress={async() => {await this.pickAnswer()}} disabled={disabledCard}>
                 <Animatable.View 
@@ -37,7 +53,7 @@ class Answer extends Component {
                 >
                     {!this.state.pick ?
                     <View >
-                        <Text style={styles.cardText}>{answer.replace(/\&|#|;/g, ' ')}</Text>
+                        <Text style={[styles.cardText,{fontSize:this.calcFontSize(fixAnswer.length)}]}>{fixAnswer}</Text>
                     </View>
                     :
                     this.state.result ?

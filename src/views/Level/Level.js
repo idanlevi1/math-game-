@@ -18,10 +18,9 @@ class Level extends Component {
     const { level, userLevelDetails } = this.props.navigation.state.params
     const {userStore} = this.props
     const { questionsHistory } = userStore.getUser
-
     // if first time - iniialize level
     if(!userLevelDetails){
-      await userStore.initializeLevel(level.number)
+      await userStore.initializeLevel(level.number,level.time)
       newUserLevelDetails = userStore.getUserLevels[level.number]
     }
     else
@@ -48,6 +47,8 @@ class Level extends Component {
   }
 
   startPlay = () =>{
+    let price = this.props.navigation.state.params.level.price
+    this.props.userStore.addCoins(-price)
     this.setState({preLevel:false})
   }
   
@@ -56,11 +57,26 @@ class Level extends Component {
     //Record time handle
     let bonusCoins = await this.recordeTimeHandle(timeIsTake)
     //Stars handle
-    await this.starsHandle(timeIsTake, fullTime)
+    let winningStars = await this.starsHandle(timeIsTake, fullTime)
     //COINS handle
-    await this.coinsHandle(bonusCoins,timeLeft)
+    let winningCoins = await this.coinsHandle(bonusCoins,timeLeft)
     //Question handle
     await this.props.userStore.addQuestion(this.state.question.question)
+    //Update Level Menu
+    await this.props.navigation.state.params.updateLevelMenu()
+
+    let newRecord = false
+    if(bonusCoins>0){
+      newRecord = true
+      winningCoins-=bonusCoins
+    }
+    let gameDetails = {
+      timeIsTake: timeIsTake,
+      winningStars: winningStars,
+      winningCoins: winningCoins,
+      newRecord: newRecord
+    }
+    return gameDetails
   }
 
   playerLost = () => {
@@ -103,6 +119,7 @@ class Level extends Component {
       let additionStars = winningStars - userLevelDetails.stars
       await updateLevelStars(level.number,additionStars)
     }
+    return winningStars
   }
 
   coinsHandle = async(bonusCoins,timeLeft) =>{
@@ -110,6 +127,7 @@ class Level extends Component {
     const { addCoins } = this.props.userStore
     let winningCoins = (Math.ceil(timeLeft*0.7) * level.number) + bonusCoins
     await addCoins(winningCoins)
+    return winningCoins
   }
  
   render() {

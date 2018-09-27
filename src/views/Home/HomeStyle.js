@@ -50,6 +50,7 @@ export default styles = StyleSheet.create({
     height: height * 0.12,
     width: width * 0.4,
     alignItems: "center",
+    justifyContent: 'center',
     borderRadius: 30,
     backgroundColor: appColors.lionColor
   },

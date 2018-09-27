@@ -7,7 +7,7 @@ export default Coins = (props) => {
     return ( 
         <View style={styles.card}>
             <AnimatableImage source={require('../../../assets/images/coins.png')}/>
-            <Text style={[styles.text,{fontSize: 22}]}>{props.coins} Coins</Text>
+            <Text style={styles.text}>{props.coins}</Text>
         </View>
      );
 }
