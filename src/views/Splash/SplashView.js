@@ -3,6 +3,7 @@ import { View, Animated, StyleSheet, Image, Dimensions } from "react-native";
 import InternetConnectionPopUp from "./InternetConnectionPopUp";
 import * as Progress from 'react-native-progress';
 import {appColors} from '../colors'
+import * as Animatable from 'react-native-animatable';
 const { width, height } = Dimensions.get("screen");
 
 export default class SplashScreen extends React.Component {
@@ -32,10 +33,11 @@ export default class SplashScreen extends React.Component {
             <InternetConnectionPopUp />
           </Animated.View>
         </View>
-        <Image
+        <Animatable.Image
         style={styles.splashLogo}
         source={require("../../../assets/images/Logo.png")}
         resizeMode='contain'
+        animation={"slideInDown"} easing="ease" iterationCount={1} duration={1500}
         />
         <View style={styles.progressCircle}>
           <Progress.Circle 

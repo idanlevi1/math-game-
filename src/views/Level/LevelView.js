@@ -45,14 +45,14 @@ class LevelView extends Component {
     clearInterval(this.state.intervalId);
   }
 
-  timer = () => {
+  timer = async() => {
     let timeLeft = this.state.timeLeft - 1;
     if(timeLeft >= 0) 
         this.setState({ timeLeft });
     else {
       clearInterval(this.state.intervalId);
       this.setState({ finish: true });
-      this.props.onPlayerLost()
+      await this.props.onPlayerLost()
     }
   };
 
@@ -69,14 +69,14 @@ class LevelView extends Component {
         this.setState({winningGameDetails})
       }
       else{
-        this.props.onPlayerLost()
+        await this.props.onPlayerLost()
       }
       this.setState({finish:true,result})
       , 1000})
   }
 
   render() {
-    const { level, question, stars, userLevelDetails, sound, onPlayerWon, onPlayerLost, onCheckLevel, navigation } = this.props;
+    const { level, question, navigation } = this.props;
     const colors = Object.values(questionColors)
     const color = colors[level.number%colors.length]
     return (

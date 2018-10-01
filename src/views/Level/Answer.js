@@ -28,10 +28,8 @@ class Answer extends Component {
     calcFontSize = (size) =>{
         if(size<=18)
             return 22;
-        if(size>45)
-            return 8
         if(size>38)
-            return 10
+            return 12
         if(size>30)
             return 14
         if(size>24)

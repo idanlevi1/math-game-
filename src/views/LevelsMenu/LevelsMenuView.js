@@ -11,43 +11,43 @@ class LevelsMenuView extends Component {
     levelsElements1:null,
     levelsElements2:null,
     userLevels:null,
-    stars:0,
+    firstTime:false,
   }
-  async componentDidMount() {
-    const {stars, coins, levels, userLevels, navigation} = this.props
-    let levelsElements1 = [], levelsElements2 = []
-    const helfLength = Math.ceil(Object.keys(levels).length/2)
-    Object.keys(levels).forEach((keyLevel,index) => {
-      if(index+1 <= helfLength)
-        levelsElements1.push(
-        <LevelCrad 
-        key={index} 
-        level={levels[keyLevel]} 
-        allUserStars={stars}
-        allUserCoins={coins}
-        userLevelDetails={userLevels && userLevels[keyLevel]}
-        navigation={navigation}
-        updateLevelMenu={this.updateLevelMenu}
-        />)
-      else
-        levelsElements2.push(
-        <LevelCrad 
-        key={index} 
-        level={levels[keyLevel]} 
-        allUserStars={stars}
-        allUserCoins={coins}
-        userLevelDetails={userLevels && userLevels[keyLevel]}
-        navigation={navigation}
-        updateLevelMenu={this.updateLevelMenu}
-        />)
-     }
-    )
-    setTimeout(() => this.setState({levelsElements1,levelsElements2}),1);
+  componentDidMount() {
+    this.setState({firstTime:true})
   }
   
-  updateLevelMenu = async() =>{
-    await this.componentDidMount()
+  componentDidUpdate(prevProps, prevState) {
+    const {stars, coins, levels, userLevels, navigation} = this.props
+    if(prevProps.coins != coins || prevProps.stars != stars || prevProps.userLevels!=userLevels || this.state.firstTime){
+      let levelsElements1 = [], levelsElements2 = []
+      const helfLength = Math.ceil(Object.keys(levels).length/2)
+      Object.keys(levels).forEach((keyLevel,index) => {
+        if(index+1 <= helfLength)
+          levelsElements1.push(
+          <LevelCrad 
+          key={index} 
+          level={levels[keyLevel]} 
+          allUserStars={stars}
+          allUserCoins={coins}
+          userLevelDetails={userLevels && userLevels[keyLevel]}
+          navigation={navigation}
+          />)
+        else
+          levelsElements2.push(
+          <LevelCrad 
+          key={index} 
+          level={levels[keyLevel]} 
+          allUserStars={stars}
+          allUserCoins={coins}
+          userLevelDetails={userLevels && userLevels[keyLevel]}
+          navigation={navigation}
+          />)
+      })
+      setTimeout(() => this.setState({levelsElements1,levelsElements2,firstTime:false}),1);
+    }
   }
+  
 
   render() {
     const {coins, stars, navigation} = this.props

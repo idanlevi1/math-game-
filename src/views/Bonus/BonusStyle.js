@@ -28,6 +28,7 @@ export default (styles = StyleSheet.create({
     fontSize: 36,
     marginTop:20,
     textAlign:'center',
+    height: height * 0.1
   },
   cardText:{
     fontFamily: 'Denk One',

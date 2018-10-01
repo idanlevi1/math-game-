@@ -63,7 +63,7 @@ class Bonus extends Component {
 
     componentDidMount() {
         let colors = ['#AFCC38','#923780','#E82D6E','#FECD34','#408A8C','#43478A']
-        let coinsBonus = [0,1,5,5,10,50]
+        let coinsBonus = [0,1,5,30,50,100]
         let shuffleColors = _.shuffle(colors)
         let shuffleCoins = _.shuffle(coinsBonus)
         this.setState({shuffleColors,shuffleCoins})
@@ -85,7 +85,7 @@ class Bonus extends Component {
             source={require('../../../assets/images/wallRed.jpg')}
             >
                 {this.state.finish ?
-                <Text style={[styles.titleText,{color:'#FFF',fontSize:24,marginTop:25}]}>Moving to the home screen{this.state.dots}</Text>
+                <Text style={[styles.titleText,{color:'#FFF',fontSize:24}]}>Moving to the home screen{this.state.dots}</Text>
                 :
                 <Text style={styles.titleText}>Pick a card...</Text>
                 }

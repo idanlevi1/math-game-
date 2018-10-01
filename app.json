@@ -4,7 +4,7 @@
     "description": "Math Game",
     "slug": "LionMathGame",
     "version": "1.0.0",
-    "icon": "./assets/images/Logo200X200.png.png",
+    "icon": "./assets/images/logo512_trans.png",
     "sdkVersion": "29.0.0",
     "privacy": "public",
     "ios": {
@@ -13,11 +13,11 @@
     "android": {
       "package": "com.idanlevi.lionmathgame",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/Logo200X200.png.png"
+        "foregroundImage": "./assets/images/logo512_trans.png"
       }
     },
     "notification": {
-      "icon":"./assets/images/Logo200X200.png.png"
+      "icon":"./assets/images/logo512_trans.png"
     }
   }
 }

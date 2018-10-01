@@ -1,9 +1,11 @@
-import React from 'react';
-import {View, Text, ImageBackground, TouchableOpacity } from 'react-native';
+import React, { Component } from 'react';
+import {View, Text, ImageBackground, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "./LevelStyle";
 
-const PrefaceLevel = (props) => {
-    const {level, personalRecord, bonusTime, startPlay} = props
+export default class PrefaceLevel extends Component {
+    state = {disabledPlay:false}
+    render() {
+    const {level, personalRecord, bonusTime, startPlay} = this.props
     return (
         <ImageBackground resizeMode={"stretch"} style={styles.prefaceLevelContainer} source={require('../../../assets/images/wallBez.jpg')}>
             <ImageBackground resizeMode={"stretch"} style={styles.prefaceLevelContainer} source={require('../../../assets/images/prefaceLevelBorder.png')}>
@@ -15,15 +17,18 @@ const PrefaceLevel = (props) => {
                     <Text style={styles.prefaceText}>Record: {level.record} Second</Text>
                     {personalRecord!=999 && <Text style={styles.prefaceText}>Your Record: {personalRecord} Second</Text>}
                     <Text style={styles.prefaceText}>Bonus Time: {bonusTime} Second</Text>
-                    <TouchableOpacity style={styles.playButtonOutside} onPress={startPlay}>
+                    <TouchableOpacity style={styles.playButtonOutside} onPress={()=> {this.setState({disabledPlay:true}); startPlay() }} disabled={this.state.disabledPlay}>
                         <View style={styles.playButton}>
+                        {!this.state.disabledPlay ? 
                             <Text style={styles.playButtonText}>Start</Text>
+                            :
+                            <ActivityIndicator size="large" color="#FF8333" style={{margin: 10}} />
+                        }
                         </View>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
         </ImageBackground>
      );
+    }
 }
- 
-export default PrefaceLevel;

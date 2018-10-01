@@ -48,8 +48,10 @@ class Level extends Component {
 
   startPlay = () =>{
     let price = this.props.navigation.state.params.level.price
-    this.props.userStore.addCoins(-price)
-    this.setState({preLevel:false})
+    setTimeout(() => {
+      this.props.userStore.addCoins(-price)
+      this.setState({preLevel:false})
+    },1);
   }
   
   playerWon = async(timeLeft,fullTime) => {
@@ -62,8 +64,6 @@ class Level extends Component {
     let winningCoins = await this.coinsHandle(bonusCoins,timeLeft)
     //Question handle
     await this.props.userStore.addQuestion(this.state.question.question)
-    //Update Level Menu
-    await this.props.navigation.state.params.updateLevelMenu()
 
     let newRecord = false
     if(bonusCoins>0){
@@ -79,8 +79,8 @@ class Level extends Component {
     return gameDetails
   }
 
-  playerLost = () => {
-    console.log('LOST')
+  playerLost = async() => {
+    
   }
 
   recordeTimeHandle = async(timeIsTake) =>{
@@ -133,15 +133,12 @@ class Level extends Component {
   render() {
     const { userStore, navigation} = this.props;
     const { level } = navigation.state.params
-    const { coins, stars, shopping } = userStore.getUser;
+    const { shopping } = userStore.getUser;
 
     return (
         !this.state.preLevel && this.state.question ?
         <LevelView
         level={level}
-        coins={coins}
-        stars={stars}
-        userLevelDetails={this.state.userLevelDetails}
         sound={userStore.sound}
         shoppingTime={shopping.time}
         navigation={navigation}

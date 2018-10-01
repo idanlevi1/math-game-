@@ -5,7 +5,7 @@ import {registerForPushNotificationsAsync,updateNotificationSettingUser} from '.
 export class userStore {
   @observable user = {
     appId:null,
-    coins:25,
+    coins:50,
     stars:0,
     userLevels: null,
     bonus: null,
