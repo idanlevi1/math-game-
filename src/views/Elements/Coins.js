@@ -1,12 +1,18 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import styles from './ElementsStyles'
-import AnimatableImage from '../components/AnimatableImage'
 
 export default Coins = (props) => {
     return ( 
         <View style={styles.card}>
-            <AnimatableImage source={require('../../../assets/images/coins.png')}/>
+            <Image 
+            style={{
+                width:props.size ? props.size : 60,
+                height:props.size ? props.size : 60,
+            }} 
+            resizeMode='contain' 
+            source={require('../../../assets/images/coins.png')}
+            />
             <Text style={styles.text}>{props.coins}</Text>
         </View>
      );

@@ -15,7 +15,7 @@ export default class PrefaceLevel extends Component {
                     <Text style={styles.prefaceText}>Type: {level.type}</Text>
                     <Text style={styles.prefaceText}>Game Time: {level.time}</Text>
                     <Text style={styles.prefaceText}>Record: {level.record} Second</Text>
-                    {personalRecord!=999 && <Text style={styles.prefaceText}>Your Record: {personalRecord} Second</Text>}
+                    {personalRecord!=1000 && <Text style={styles.prefaceText}>Your Record: {personalRecord} Second</Text>}
                     <Text style={styles.prefaceText}>Bonus Time: {bonusTime} Second</Text>
                     <TouchableOpacity style={styles.playButtonOutside} onPress={()=> {this.setState({disabledPlay:true}); startPlay() }} disabled={this.state.disabledPlay}>
                         <View style={styles.playButton}>

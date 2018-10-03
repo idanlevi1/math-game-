@@ -21,7 +21,7 @@ export default HomeView = (props) => {
         >
             {/* STARS & COINS */}
             <View style={styles.rowIcons}>
-                <Stars stars={stars}/>
+                <Stars stars={stars} withoutAnimation/>
                 <BonusElement 
                 bonusStatus={bonusStatus} 
                 navigation={navigation} 
@@ -47,32 +47,41 @@ export default HomeView = (props) => {
             </TouchableOpacity>
             {/* Icons Row */}
             <View style={[styles.rowIcons,{paddingTop:25,marginHorizontal:25,}]}>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.shake(400); props.switchSound()}}>
-                    <Animatable.View 
-                    style={styles.iconButton}
-                    ref={(ref)=>{this.soundRef = ref}}
-                    >
-                    <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.lionColorDark}/>
-                    </Animatable.View>
-                </TouchableOpacity>
-                <TouchableOpacity underlayColor='#fff' onPress={() => {
-                    this.store.bounce(500); 
-                    navigation.navigate('GameStore',{navigation:navigation})
-                }}>
-                    <Animatable.View 
-                    style={styles.iconButton}
-                    ref={(ref)=>{this.store = ref}}
-                    >
-                    <Ionicons name={'ios-basket-outline'} size={40} color={appColors.lionColorDark}/>
-                    </Animatable.View>
-                </TouchableOpacity>
-                <TouchableOpacity underlayColor='#fff' onPress={()=>{Toast.show('Sorry, not available in this version');}} >
-                    <Animatable.View 
-                    style={styles.iconButton}
-                    >
-                    <Ionicons name={'md-globe'} size={40} color={appColors.lionColorDark}/>
-                    </Animatable.View>
-                </TouchableOpacity>
+                {/* Sound */}
+                <Animatable.View animation={"slideInLeft"} iterationCount={1} duration={1250}>
+                    <TouchableOpacity underlayColor='#fff' onPress={() => {this.soundRef.shake(400); props.switchSound()}}>
+                        <Animatable.View 
+                        style={styles.iconButton}
+                        ref={(ref)=>{this.soundRef = ref}}
+                        >
+                        <Ionicons name={sound ? 'md-volume-up' : 'md-volume-off'} size={40} color={appColors.lionColorDark}/>
+                        </Animatable.View>
+                    </TouchableOpacity>
+                </Animatable.View>
+                {/* Game Store */}
+                <Animatable.View animation={"slideInUp"} iterationCount={1} duration={1250}>
+                    <TouchableOpacity underlayColor='#fff' onPress={() => {
+                        this.store.bounce(500); 
+                        navigation.navigate('GameStore',{navigation:navigation})
+                    }}>
+                        <Animatable.View 
+                        style={styles.iconButton}
+                        ref={(ref)=>{this.store = ref}}
+                        >
+                        <Ionicons name={'ios-basket-outline'} size={40} color={appColors.lionColorDark}/>
+                        </Animatable.View>
+                    </TouchableOpacity>
+                </Animatable.View>
+                {/* language */}
+                <Animatable.View animation={"slideInRight"} iterationCount={1} duration={1250}>
+                    <TouchableOpacity underlayColor='#fff' onPress={()=>{Toast.show('Sorry, not available in this version');}} >
+                        <Animatable.View 
+                        style={styles.iconButton}
+                        >
+                        <Ionicons name={'md-globe'} size={40} color={appColors.lionColorDark}/>
+                        </Animatable.View>
+                    </TouchableOpacity>
+                </Animatable.View>
             </View>
         </ImageBackground>
     )

@@ -16,7 +16,7 @@ export default class Home extends React.Component {
     let bonus = this.props.userStore.getUser.bonus
     if(bonus){
       let lastDay = new Date()
-      lastDay.setDate(lastDay.getDate()-1);
+      lastDay.setHours(lastDay.getHours() - 12); //subtract 12 hours
       if(new Date(bonus)>lastDay)
         this.setState({bonusStatus:false})
     }

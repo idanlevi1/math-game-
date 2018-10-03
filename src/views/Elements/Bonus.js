@@ -14,12 +14,12 @@ export default BonusElement = props => {
             let msg = 'New bonus! Please refresh and get it'
             let lastDay = new Date()
             let bonusDate = new Date(bonus)
-            lastDay.setDate(lastDay.getDate()-1);
+            lastDay.setHours(lastDay.getHours() - 12);
             if(bonusDate>lastDay){
                 let nextBonusTime = (bonusDate - lastDay)/(3600*1000)
                 let nextBonusHours = Math.floor(nextBonusTime)
                 let nextBonusMinutes = Math.floor((nextBonusTime % 1)*60)
-                msg = 'New bonus every 24 hours\n' + nextBonusHours + ' hours and ' + nextBonusMinutes + ' minutes left for the next bonus'
+                msg = 'New bonus every 12 hours\n' + nextBonusHours + ' hours and ' + nextBonusMinutes + ' minutes left for the next bonus'
             }
             Toast.show(msg,Toast.LONG,Toast.TOP)
         }

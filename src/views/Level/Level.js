@@ -150,7 +150,7 @@ class Level extends Component {
         <PrefaceLevel
         level={level}
         bonusTime={shopping.time}
-        personalRecord={this.state.userLevelDetails ? this.state.userLevelDetails.personalRecord : 999}
+        personalRecord={this.state.userLevelDetails ? this.state.userLevelDetails.personalRecord : 1000}
         startPlay={this.startPlay}
         />
     )

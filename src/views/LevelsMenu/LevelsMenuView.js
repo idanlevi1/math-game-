@@ -55,7 +55,7 @@ class LevelsMenuView extends Component {
     return (
       <ImageBackground style={styles.backgroundContainer} source={require('../../../assets/images/wall.jpg')}>
         <View style={styles.rowIcons}>
-            <Stars stars={stars}/>
+            <Stars stars={stars} withoutAnimation/>
             <Coins coins={coins}/>
         </View>
         <View style={styles.levelsView}>
