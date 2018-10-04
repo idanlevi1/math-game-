@@ -46,7 +46,9 @@ class Level extends Component {
     this.setState({question,userLevelDetails:newUserLevelDetails})
   }
 
-  startPlay = () =>{
+  startPlay = async() =>{
+    const { sound, AudioPlayer } = this.props.userStore
+    await AudioPlayer.clickAudioPlay(sound)
     let price = this.props.navigation.state.params.level.price
     setTimeout(() => {
       this.props.userStore.addCoins(-price)
@@ -55,11 +57,17 @@ class Level extends Component {
   }
   
   playerWon = async(timeLeft,fullTime) => {
+    //play sound
+    const { sound, AudioPlayer } = this.props.userStore
+    sound && await AudioPlayer.successAudioPlay()
+
     let timeIsTake = fullTime - timeLeft
     //Record time handle
-    let bonusCoins = await this.recordeTimeHandle(timeIsTake)
+    let bonusCoins = await this.recordTimeHandle(timeIsTake)
     //Stars handle
     let winningStars = await this.starsHandle(timeIsTake, fullTime)
+    sound && setTimeout(async() => { await AudioPlayer.starsAudioPlay(winningStars)},2000);
+    
     //COINS handle
     let winningCoins = await this.coinsHandle(bonusCoins,timeLeft)
     //Question handle
@@ -80,10 +88,11 @@ class Level extends Component {
   }
 
   playerLost = async() => {
-    
+    const { sound, AudioPlayer } = this.props.userStore
+    sound && await AudioPlayer.failAudioPlay()
   }
 
-  recordeTimeHandle = async(timeIsTake) =>{
+  recordTimeHandle = async(timeIsTake) =>{
     const { navigation, userStore, levelsStore} = this.props
     const { level } = navigation.state.params
     const { updateNewPersonalRecord } = userStore
@@ -107,13 +116,11 @@ class Level extends Component {
     const { updateLevelStars } = userStore
     const {userLevelDetails} = this.state
     let winningStars = 1 
-    if(userLevelDetails.stars != 3){
-      let winnigRatio = timeIsTake / fullTime
-      if(winnigRatio <= 0.4){
+    let winnigRatio = timeIsTake / fullTime
+    if(winnigRatio <= 0.4){
+      winningStars++
+      if(winnigRatio <= 0.2)
         winningStars++
-        if(winnigRatio <= 0.2)
-          winningStars++
-      }
     }
     if(winningStars > userLevelDetails.stars){
       let additionStars = winningStars - userLevelDetails.stars
@@ -130,6 +137,15 @@ class Level extends Component {
     return winningCoins
   }
  
+  timerLeft4SecondSound = async() => {
+    const { sound, AudioPlayer } = this.props.userStore
+    sound && await AudioPlayer.timerAudioPlay()
+  }
+
+  handleStopTimerSound = async()=>{
+    const { sound, AudioPlayer } = this.props.userStore
+    sound && await AudioPlayer.stopTimerAudioPlay()
+  }
   render() {
     const { userStore, navigation} = this.props;
     const { level } = navigation.state.params
@@ -139,12 +155,13 @@ class Level extends Component {
         !this.state.preLevel && this.state.question ?
         <LevelView
         level={level}
-        sound={userStore.sound}
         shoppingTime={shopping.time}
         navigation={navigation}
         onPlayerWon={this.playerWon}
         onPlayerLost={this.playerLost}
         question={this.state.question}
+        timerLeft4SecondSound={this.timerLeft4SecondSound}
+        stopTimerSound={this.handleStopTimerSound}
         />
         :
         <PrefaceLevel

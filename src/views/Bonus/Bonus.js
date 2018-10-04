@@ -16,6 +16,7 @@ class Card extends Component {
         this.props.handleDisabledCards()
         this.card.bounceInDown(1500);
         this.setState({pick:coins,iterationAnimationCard:1})
+        await this.props.handlePlaySound(coins)
         await this.props.setBonus(coins)
     }
 
@@ -58,7 +59,9 @@ class Bonus extends Component {
     state = {
         play:false,
         finish:false,
-        dots:''
+        dots:'',
+        maximumWin:0,
+        minimumWin:0,
     }
 
     componentDidMount() {
@@ -66,7 +69,9 @@ class Bonus extends Component {
         let coinsBonus = [0,1,5,30,50,100]
         let shuffleColors = _.shuffle(colors)
         let shuffleCoins = _.shuffle(coinsBonus)
-        this.setState({shuffleColors,shuffleCoins})
+        let maximumWin = Math.max(...coinsBonus)
+        let minimumWin = Math.min(...coinsBonus)
+        this.setState({shuffleColors,shuffleCoins,maximumWin,minimumWin})
     }
     
     handleDisabledCards = () => {
@@ -76,6 +81,18 @@ class Bonus extends Component {
         setTimeout(() => {this.setState({dots:'..'})}, 3000)
         setTimeout(() => {this.setState({dots:'...'})}, 3500)
         setTimeout(() => {this.props.navigation.state.params.navigation.pop(1)}, 4200)
+    }
+
+    handlePlaySound = async(coins) =>{
+        const {sound, moneyAudioPlay} = this.props.navigation.state.params
+        if(sound){
+            let soundType = 'regular'
+            if(coins == this.state.maximumWin)
+                soundType = 'maxWin'
+            else if(coins == this.state.minimumWin)
+                soundType = 'minWin'
+            await moneyAudioPlay(soundType)
+        }
     }
 
     render() {
@@ -99,6 +116,7 @@ class Bonus extends Component {
                         index={i}
                         disabledCard={this.state.play}
                         handleDisabledCards={this.handleDisabledCards}
+                        handlePlaySound={this.handlePlaySound}
                         setBonus={this.props.navigation.state.params.setBonus}
                         />
                     )}

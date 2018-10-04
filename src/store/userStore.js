@@ -1,6 +1,7 @@
 import {observable, action, computed} from 'mobx'
 import * as firebase from 'firebase';
 import {registerForPushNotificationsAsync,updateNotificationSettingUser} from '../App/Notifications'
+import SoundService from '../App/soundService'
 
 export class userStore {
   @observable user = {
@@ -19,6 +20,8 @@ export class userStore {
   }
   
   @observable sound = true
+
+  @observable AudioPlayer = new SoundService()
 
   @computed get getUser(){
     return this.user

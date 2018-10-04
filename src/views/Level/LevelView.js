@@ -47,8 +47,11 @@ class LevelView extends Component {
 
   timer = async() => {
     let timeLeft = this.state.timeLeft - 1;
-    if(timeLeft >= 0) 
+    if(timeLeft >= 0){
         this.setState({ timeLeft });
+        if(timeLeft == 4)
+          await this.props.timerLeft4SecondSound()
+    }
     else {
       clearInterval(this.state.intervalId);
       this.setState({ finish: true });
@@ -63,6 +66,7 @@ class LevelView extends Component {
 
   handleCheckLevel = async(result) => {
     clearInterval(this.state.intervalId);
+    await this.props.stopTimerSound()
     await setTimeout(async() => {
       if(result){
         let winningGameDetails = await this.props.onPlayerWon(this.state.timeLeft, this.state.fullTime)

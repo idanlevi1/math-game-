@@ -16,6 +16,8 @@ class LevelsMenu extends Component {
       levels={levelsStore.getLevels}
       navigation={navigation}
       userLevels={userStore.getUserLevels}
+      sound={userStore.sound}
+      AudioPlayer={userStore.AudioPlayer}
       />
     )
   }

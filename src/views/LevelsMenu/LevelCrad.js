@@ -9,8 +9,8 @@ import {questionColors} from '../colors'
 
 class LevelCrad extends Component {
 
-  onLevelClick = () =>{
-    const {level, navigation, userLevelDetails, allUserStars, allUserCoins} = this.props
+  onLevelClick = async() =>{
+    const {level, navigation, userLevelDetails, allUserStars, allUserCoins, sound, AudioPlayer} = this.props
     let canPlay = true
     let msg = ''
     if(allUserStars<level.reqStars){
@@ -21,8 +21,10 @@ class LevelCrad extends Component {
       canPlay = false
       msg = 'Not enough money - the price is '+level.price +' coins'
     }
-    if(canPlay)
+    if(canPlay){
+      await AudioPlayer.clickAudioPlay(sound)
       navigation.navigate('Level',{level, userLevelDetails})
+    }
     else
       Toast.show(msg)
   }

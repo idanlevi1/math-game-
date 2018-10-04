@@ -7,7 +7,12 @@ import Toast from 'react-native-simple-toast';
 export default BonusElement = props => {
     bonusAction = () => {
         if(props.bonusStatus)
-            props.navigation.navigate('Bonus',{setBonus:props.setBonus,navigation:props.navigation})
+            props.navigation.navigate('Bonus',{
+                setBonus:props.setBonus,
+                navigation:props.navigation,
+                sound: props.sound,
+                moneyAudioPlay: props.moneyAudioPlay,
+            })
         else{
             //Calculate BONUS time left
             let bonus = props.userBonus

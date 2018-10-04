@@ -8,7 +8,6 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state ={bonusStatus:true}
-    // this.audioPlayer = new Expo.Audio.Sound();
   }
 
   componentDidMount = async() => {
@@ -20,16 +19,6 @@ export default class Home extends React.Component {
       if(new Date(bonus)>lastDay)
         this.setState({bonusStatus:false})
     }
-    
-    // try {
-    //   await this.audioPlayer.unloadAsync()
-    //   await this.audioPlayer.loadAsync(require('../../../assets/audio/pb_sunset_love.mp3'));
-    //   await this.audioPlayer.setVolumeAsync(0.5)
-    //   await this.audioPlayer.playAsync();
-    //   await this.audioPlayer.setIsLoopingAsync(true)
-    // } catch (err) {
-    //   console.warn("Couldn't Play audio", err)
-    // }
   };
 
   handleSetBonus = (coins) =>{
@@ -39,9 +28,10 @@ export default class Home extends React.Component {
 
   switchSound = async() => {
     this.props.userStore.switchSound();
-    // await this.props.userStore.sound ? this.audioPlayer.playAsync() : this.audioPlayer.pauseAsync()
   }
-  onPlay = () => {
+  onPlay = async() => {
+    const {AudioPlayer, sound} = this.props.userStore
+    await AudioPlayer.clickAudioPlay(sound)
     this.props.navigation.navigate('LevelsMenu')
   }
   render() {
@@ -57,6 +47,7 @@ export default class Home extends React.Component {
       bonusStatus= {this.state.bonusStatus}
       userBonus={bonus}
       setBonus={this.handleSetBonus}
+      moneyAudioPlay={this.props.userStore.AudioPlayer.moneyAudioPlay}
       />
     );
   }

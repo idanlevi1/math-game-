@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, ImageBackground } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { appColors } from '../colors';
@@ -13,7 +13,7 @@ const logoImg = require('../../../assets/images/Logo.png');
 const wallBackground = require('../../../assets/images/wall.jpg')
 
 export default HomeView = (props) => {
-    const {coins, stars, sound, navigation, bonusStatus, userBonus, setBonus} = props
+    const {coins, stars, sound, navigation, bonusStatus, userBonus, setBonus, moneyAudioPlay} = props
     return (
         <ImageBackground
           style={styles.backgroundContainer}
@@ -27,6 +27,8 @@ export default HomeView = (props) => {
                 navigation={navigation} 
                 userBonus={userBonus}
                 setBonus={setBonus}
+                sound={sound}
+                moneyAudioPlay={moneyAudioPlay}
                 />
                 <Coins coins={coins}/>
             </View>

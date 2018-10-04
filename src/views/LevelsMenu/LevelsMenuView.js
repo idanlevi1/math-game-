@@ -18,7 +18,7 @@ class LevelsMenuView extends Component {
   }
   
   componentDidUpdate(prevProps, prevState) {
-    const {stars, coins, levels, userLevels, navigation} = this.props
+    const {stars, coins, levels, userLevels, navigation, sound, AudioPlayer} = this.props
     if(prevProps.coins != coins || prevProps.stars != stars || prevProps.userLevels!=userLevels || this.state.firstTime){
       let levelsElements1 = [], levelsElements2 = []
       const helfLength = Math.ceil(Object.keys(levels).length/2)
@@ -32,6 +32,8 @@ class LevelsMenuView extends Component {
           allUserCoins={coins}
           userLevelDetails={userLevels && userLevels[keyLevel]}
           navigation={navigation}
+          sound={sound}
+          AudioPlayer={AudioPlayer}
           />)
         else
           levelsElements2.push(
@@ -42,6 +44,8 @@ class LevelsMenuView extends Component {
           allUserCoins={coins}
           userLevelDetails={userLevels && userLevels[keyLevel]}
           navigation={navigation}
+          sound={sound}
+          AudioPlayer={AudioPlayer}
           />)
       })
       setTimeout(() => this.setState({levelsElements1,levelsElements2,firstTime:false}),1);
