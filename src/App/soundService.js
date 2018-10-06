@@ -99,7 +99,7 @@ class SoundService extends Component {
                 await this.failAudio.replayAsync()
             }
             else
-                await this.timerAudio.replayAsync();
+                await this.failAudio.replayAsync();
             
         }
         catch(error){

@@ -66,7 +66,7 @@ class Level extends Component {
     let bonusCoins = await this.recordTimeHandle(timeIsTake)
     //Stars handle
     let winningStars = await this.starsHandle(timeIsTake, fullTime)
-    sound && setTimeout(async() => { await AudioPlayer.starsAudioPlay(winningStars)},2000);
+    sound && setTimeout(async() => { await AudioPlayer.starsAudioPlay(winningStars)},1000);
     
     //COINS handle
     let winningCoins = await this.coinsHandle(bonusCoins,timeLeft)
@@ -117,9 +117,9 @@ class Level extends Component {
     const {userLevelDetails} = this.state
     let winningStars = 1 
     let winnigRatio = timeIsTake / fullTime
-    if(winnigRatio <= 0.4){
+    if(winnigRatio <= 0.5){
       winningStars++
-      if(winnigRatio <= 0.2)
+      if(winnigRatio <= 0.25)
         winningStars++
     }
     if(winningStars > userLevelDetails.stars){

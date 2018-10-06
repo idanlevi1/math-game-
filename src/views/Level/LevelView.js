@@ -76,7 +76,7 @@ class LevelView extends Component {
         await this.props.onPlayerLost()
       }
       this.setState({finish:true,result})
-      , 1000})
+      , 400})
   }
 
   render() {
