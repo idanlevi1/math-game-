@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Animated, StyleSheet, Image, Dimensions } from "react-native";
+import { View, Animated, StyleSheet, Text, Dimensions } from "react-native";
 import InternetConnectionPopUp from "./InternetConnectionPopUp";
 import * as Progress from 'react-native-progress';
 import {appColors} from '../colors'
 import * as Animatable from 'react-native-animatable';
 const { width, height } = Dimensions.get("screen");
+const VERSION = '1.0.0'
 
 export default class SplashScreen extends React.Component {
 
@@ -50,6 +51,7 @@ export default class SplashScreen extends React.Component {
             unfilledColor={appColors.lionColor}
             thickness={12}
           />
+          <Text style={styles.versionText}>Version {VERSION}</Text>
         </View>
       </View>
     );
@@ -85,4 +87,10 @@ const styles = StyleSheet.create({
     top: '70%',
     zIndex:999,
   },
+  versionText:{
+    fontSize:12,
+    marginTop:25,
+    textAlign:'center',
+    color:appColors.lionOrange,
+  }
 });

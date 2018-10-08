@@ -88,4 +88,3 @@ export default HomeView = (props) => {
         </ImageBackground>
     )
 }
-            

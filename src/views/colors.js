@@ -14,8 +14,8 @@ export const questionColors = {
     n5:'#ffc91a',
     n6:'#ffc400',
     n7:'#FABC36',
-    n8:'#FABC36',
-    n9:'#e6b000',
+    n8:'#FABC49',
+    n9:'#e1b022',
     n10:'#e6b000',
     n11:'#ffb380',
     n12:'#ffa366',
@@ -26,5 +26,4 @@ export const questionColors = {
     n17:'#e65c00',
     n18:'#cc5200',
     n19:'#b34700',
-    // n20:rgb(255, 131, 50),
 }
