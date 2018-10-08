@@ -1,5 +1,5 @@
 export default AUDIO = {
-    click: require("../../assets/audio/click.wav"),
+    click: require("../../assets/audio/click.mp3"),
     money: require("../../assets/audio/money.mp3"),
     bigMoney: require("../../assets/audio/bigMoney.mp3"),
     collecting: require("../../assets/audio/collecting.mp3"),

@@ -23,7 +23,7 @@ class SoundService extends Component {
                     this.clickAudio = new Expo.Audio.Sound();
                     await this.clickAudio.unloadAsync()
                     await this.clickAudio.loadAsync(AUDIO.click);
-                    await this.clickAudio.setVolumeAsync(0.9)
+                    await this.clickAudio.setVolumeAsync(0.7)
                     await this.clickAudio.replayAsync()
                 }
                 else
@@ -95,7 +95,7 @@ class SoundService extends Component {
                 this.failAudio = new Expo.Audio.Sound();
                 await this.failAudio.unloadAsync()
                 await this.failAudio.loadAsync(AUDIO.fail);
-                await this.failAudio.setVolumeAsync(0.5)
+                await this.failAudio.setVolumeAsync(0.6)
                 await this.failAudio.replayAsync()
             }
             else

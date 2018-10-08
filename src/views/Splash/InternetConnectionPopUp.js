@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {View, Text, StyleSheet, NetInfo, Dimensions, Modal} from 'react-native';
+import {View, Text, StyleSheet, NetInfo, Dimensions, Modal, Image} from 'react-native';
 const { height, width } = Dimensions.get('window');
+import { appColors } from "../colors";
 
 export default class InternetConnectionPopUp extends Component {
     constructor(props) {
@@ -35,8 +36,13 @@ export default class InternetConnectionPopUp extends Component {
                 onRequestClose={() => {}}
                 >
                     <View style={styles.modalContainer}>
-                        <Text style={[styles.buttonText,{fontSize: 22}]}>שגיאה</Text>
-                        <Text style={styles.buttonText}>האינטרנט במכשיר לא זמין</Text>
+                        <Text style={[styles.buttonText,{fontSize: 26}]}>Opss...</Text>
+                        <Text style={styles.buttonText}>No connections are available</Text>
+                        <Image 
+                        style={{width:50,height:50}} 
+                        resizeMode='contain'
+                        source={{uri:'http://debitcardcasino.ca/wp-content/uploads/2018/08/internet-network-disconnect.png'}}
+                        />
                     </View>
                 </Modal>
                 <Text style={styles.container}>.</Text>
@@ -50,26 +56,28 @@ export default class InternetConnectionPopUp extends Component {
     
 const styles = StyleSheet.create({
     container :{
-        backgroundColor: '#2E4A62',
+        backgroundColor: appColors.lionColor,
         height:height,
         width:width,
     },
     modalContainer: {
+        paddingTop: "25%",
         marginTop: "40%",
-        marginBottom: "30%",
+        height: height*0.35,
         justifyContent: 'center',
-        alignSelf:'center',        
-        backgroundColor: '#B4B7BA',
+        alignItems: 'center',
+        alignSelf:'center',
+        backgroundColor: '#FFF',
         width: '70%',
-        borderWidth:2,
-        borderRadius:15,
+        borderWidth:3,
+        borderRadius:10,
         zIndex:9999,
-        borderColor:'red'
+        borderColor:'#000'
       },
       buttonText: {
-        padding: 15,
-        color: "#ffffff",
-        fontSize: 18,
+        paddingVertical: 10,
+        color: appColors.lionOrangeDark,
+        fontSize: 20,
         fontWeight: "bold",
         textAlign: "center"
       },
