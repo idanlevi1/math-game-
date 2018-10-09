@@ -116,7 +116,14 @@ export class userStore {
       else{
         exist = false
         this.user.appId= appId
-        this.user.currentLocale = await Expo.DangerZone.Localization.getCurrentLocaleAsync()
+        try{
+          this.user.currentLocale = await Expo.DangerZone.Localization.getCurrentLocaleAsync()
+          let PreferredLocales = await Expo.DangerZone.Localization.getPreferredLocalesAsync() || []
+          let timeZone = await Expo.DangerZone.Localization.getCurrentTimeZoneAsync()
+          PreferredLocales.push(timeZone)
+          this.user.localization = PreferredLocales
+        }
+        catch(e){console.log(e)}
         await ref.child(appId).set(this.user)
       }
     })

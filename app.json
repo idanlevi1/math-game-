@@ -3,7 +3,7 @@
     "name": "Lion Math",
     "description": "Math Game",
     "slug": "LionMathGame",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "icon": "./assets/images/logo512_trans.png",
     "sdkVersion": "29.0.0",
     "privacy": "public",
@@ -11,6 +11,7 @@
       "bundleIdentifier": "com.idanlevi.lionmathgame"
     },
     "android": {
+      "versionCode": 2,
       "package": "com.idanlevi.lionmathgame",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logo512_trans.png"

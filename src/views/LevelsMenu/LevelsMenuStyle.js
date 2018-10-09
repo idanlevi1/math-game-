@@ -10,14 +10,14 @@ export default styles = StyleSheet.create({
     opacity:0.9,
   },
   levelsView: {
-    marginTop:15,
-    height: height * 0.65,
+    marginTop:10,
+    height: height * 0.57,
     width: width * 0.9,
     alignSelf: 'center',
   },
   levelsLine:{
-    height: height * 0.4,
-    width: width * 0.4,
+    height: height * 0.35,
+    width: width * 0.35,
   },
   rowIcons: {
     height: height *  0.15,
@@ -28,7 +28,8 @@ export default styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
     justifyContent: "space-between",
-    margin: 10,
+    marginTop: 10,
+    marginBottom: 5,
   },
   levelContainer:{
     marginTop: height*0.04,

@@ -3,6 +3,7 @@ import { Text,ImageBackground, View, TouchableOpacity,Image } from 'react-native
 import styles from './BonusStyle';
 import _ from 'lodash';
 import * as Animatable from 'react-native-animatable'
+import {adInterstitial} from '../components/AdInterstitial'
 
 class Card extends Component {
     state = { 
@@ -80,7 +81,8 @@ class Bonus extends Component {
         setTimeout(() => {this.setState({dots:'.'})}, 2500)
         setTimeout(() => {this.setState({dots:'..'})}, 3000)
         setTimeout(() => {this.setState({dots:'...'})}, 3500)
-        setTimeout(() => {this.props.navigation.state.params.navigation.pop(1)}, 4200)
+        setTimeout(() => {adInterstitial()}, 4200)
+        setTimeout(() => {this.props.navigation.state.params.navigation.pop(1)}, 4800)
     }
 
     handlePlaySound = async(coins) =>{

@@ -8,6 +8,7 @@ import Stars from '../Elements/Stars'
 import Coins from '../Elements/Coins'
 import BonusElement from '../Elements/Bonus'
 import styles from "./HomeStyle";
+import AdBanner from '../components/AdBanner'
 
 const logoImg = require('../../../assets/images/Logo.png');
 const wallBackground = require('../../../assets/images/wall.jpg')
@@ -85,6 +86,7 @@ export default HomeView = (props) => {
                     </TouchableOpacity>
                 </Animatable.View>
             </View>
+            <AdBanner/>
         </ImageBackground>
     )
 }

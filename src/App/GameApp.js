@@ -7,7 +7,7 @@ import shoppingStore from '../store/shoppingStore'
 import { Provider } from 'mobx-react';
 
 export default class GameApp extends Component {
-    componentWillMount() {
+    componentDidMount() {
       initdb();
     }
 

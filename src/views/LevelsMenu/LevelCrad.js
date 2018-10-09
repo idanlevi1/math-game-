@@ -41,14 +41,14 @@ class LevelCrad extends Component {
   render() {
     const {level, userLevelDetails, allUserStars} = this.props
     const disableLevel = allUserStars >= level.reqStars ? false : true
-    const playBefore = userLevelDetails ? false : true
+    const playBefore = userLevelDetails ? true : false
     const colors = Object.values(questionColors)
     const color = colors[level.number%colors.length]
     return (
       <TouchableOpacity onPress={this.onLevelClick}>
         <ImageBackground resizeMode='stretch' style={[styles.imgBGCard,disableLevel&&{opacity:0.5}]} source={require('../../../assets/images/letter.png')}>
           <View style={[styles.levelContainer,{backgroundColor:color}]}>
-            {!playBefore ?
+            {playBefore ?
             <Animatable.View style={styles.starsLine} animation="pulse" easing="ease-in" iterationCount="infinite">
               {this.getStarIcons(userLevelDetails.stars)}
             </Animatable.View>
@@ -62,7 +62,7 @@ class LevelCrad extends Component {
             <View style={styles.priceCrad}>
               <Text style={[styles.priceText,{color:color}]}>{level.price} coins</Text>
             </View>
-          </View>
+          </View>          
         </ImageBackground>
       </TouchableOpacity>
     );

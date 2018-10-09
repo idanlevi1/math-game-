@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {View, Text, ImageBackground, TouchableOpacity, ActivityIndicator } from 'react-native';
 import styles from "./LevelStyle";
+import AdBanner from '../components/AdBanner'
 
 export default class PrefaceLevel extends Component {
     state = {disabledPlay:false}
@@ -26,6 +27,7 @@ export default class PrefaceLevel extends Component {
                         }
                         </View>
                     </TouchableOpacity>
+                    <AdBanner marginTop={0} bannerType="largeBanner"/>
                 </View>
             </ImageBackground>
         </ImageBackground>

@@ -5,6 +5,9 @@ import Coins from '../Elements/Coins'
 import styles from "./LevelsMenuStyle";
 import LevelCrad from './LevelCrad';
 import BackButton from '../buttons/BackButton'
+import AdBanner from '../components/AdBanner'
+import AdBannerCircle from '../components/AdBannerCircle';
+const AD_LEVEL = 5
 
 class LevelsMenuView extends Component {
   state = {
@@ -47,6 +50,8 @@ class LevelsMenuView extends Component {
           sound={sound}
           AudioPlayer={AudioPlayer}
           />)
+        if(keyLevel==AD_LEVEL)
+          levelsElements1.push(<AdBannerCircle key={'ad'+index}/>)
       })
       setTimeout(() => this.setState({levelsElements1,levelsElements2,firstTime:false}),1);
     }
@@ -85,6 +90,7 @@ class LevelsMenuView extends Component {
         <View style={styles.bottomLine}>
           <BackButton navigation={navigation}/>
         </View>
+        <AdBanner marginTop={0}/>
       </ImageBackground>
     );
   }

@@ -104,7 +104,7 @@ class LevelView extends Component {
             </View>
           </View>
           <View style={[styles.question,{backgroundColor:color}]}>
-            <Text style={styles.questionText}>{question.question.replace(/\&|#|;/g, ' ')}</Text>
+            <Text style={styles.questionText}>{question.question.replace(/\&|#|039|;/g, ' ')}</Text>
           </View>
           <View style={styles.answers}>
           { this.state.answers && 
