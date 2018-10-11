@@ -5,7 +5,6 @@ import { View, StyleSheet } from 'react-native';
 export default AdBanner = (props) => {
     const styles = StyleSheet.create({
         adBanner: {
-        borderWidth: 1,
         marginTop: props.marginTop ? marginTop : 20,
         alignSelf: "center",
         },
