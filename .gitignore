@@ -17,4 +17,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # DB
-\src\App\initDB.js
+/src/App/initDB.js
