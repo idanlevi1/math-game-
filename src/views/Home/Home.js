@@ -3,6 +3,7 @@ import {BackHandler, Platform} from 'react-native'
 import HomeView from "./HomeView";
 import { observer,inject } from 'mobx-react';
 import {adInterstitial} from '../components/AdInterstitial'
+import Toast from 'react-native-simple-toast';
 
 @inject('userStore')
 @observer
@@ -34,6 +35,7 @@ class Home extends React.Component {
     if(this.state.exit>0)
       adInterstitial()
     else{
+      Toast.show('Clicking the back button twice to exit');
       this.setState({exit:1})
       setTimeout( () => this.setState({exit:0}), 1500)
     }
