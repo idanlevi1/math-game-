@@ -32,14 +32,17 @@ class Home extends React.Component {
   };
 
   _onBackClicked = () => {
-    if(this.state.exit>0)
-      adInterstitial()
-    else{
-      Toast.show('Clicking the back button twice to exit');
-      this.setState({exit:1})
-      setTimeout( () => this.setState({exit:0}), 1500)
+    const tryToPop = this.props.navigation.pop();
+    if (!tryToPop) {
+      if (this.state.exit > 0) {
+        adInterstitial();
+        BackHandler.exitApp();
+      } else {
+        Toast.show("Clicking the back button twice to exit.");
+        this.setState({ exit: 1 });
+        setTimeout(() => this.setState({ exit: 0 }), 1500);
+      }
     }
-    this.props.navigation.pop()
     return true;
   } 
 
@@ -61,6 +64,7 @@ class Home extends React.Component {
     await AudioPlayer.clickAudioPlay(sound)
     this.props.navigation.navigate('LevelsMenu')
   }
+
   render() {
     const {coins,stars,bonus} = this.props.userStore.getUser
     return (

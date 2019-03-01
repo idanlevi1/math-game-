@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text,ImageBackground, View, TouchableOpacity,Image } from 'react-native';
 import styles from './BonusStyle';
-import _ from 'lodash';
+import shuffle from 'lodash/shuffle';
 import * as Animatable from 'react-native-animatable'
 import {adInterstitial} from '../components/AdInterstitial'
 
@@ -68,8 +68,8 @@ class Bonus extends Component {
     componentDidMount() {
         let colors = ['#AFCC38','#923780','#E82D6E','#FECD34','#408A8C','#43478A']
         let coinsBonus = [0,1,5,30,50,100]
-        let shuffleColors = _.shuffle(colors)
-        let shuffleCoins = _.shuffle(coinsBonus)
+        let shuffleColors = shuffle(colors)
+        let shuffleCoins = shuffle(coinsBonus)
         let maximumWin = Math.max(...coinsBonus)
         let minimumWin = Math.min(...coinsBonus)
         this.setState({shuffleColors,shuffleCoins,maximumWin,minimumWin})

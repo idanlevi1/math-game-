@@ -12,7 +12,7 @@ const HomeRoute = createStackNavigator(
         LevelsMenu: LevelsMenuScreen,
         PrefaceLevel: PrefaceLevelScreen,
         Level: LevelScreen,
-        GameStore: GameStoreScreen,
+        GameStore: {screen: GameStoreScreen },
         Bonus: BonusScreen,
     },
     {headerMode: 'none'}

@@ -7,7 +7,7 @@ import {appColors,questionColors} from '../colors'
 import * as Progress from 'react-native-progress';
 import AnimatableImage from '../components/AnimatableImage'
 import Answer from './Answer'
-import _ from 'lodash';
+import shuffle from 'lodash/shuffle';
 
 class LevelView extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class LevelView extends Component {
     var intervalId = setInterval(this.timer, 1000);
     let answers = question.incorrect_answers
     answers.push(question.correct_answer);
-    let shuffleAnswers = _.shuffle(answers)
+    let shuffleAnswers = shuffle(answers)
     this.setState({ 
       timeLeft, 
       intervalId, 

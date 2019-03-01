@@ -16,6 +16,7 @@ class GameStore extends Component {
   render() {
     const { shoppingStore, userStore } = this.props
     const {navigation} = this.props.navigation.state.params
+    console.log('game store:', navigation)
     return (
         <GameStoreView 
         items={shoppingStore.shoppingItems}
