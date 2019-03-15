@@ -66,7 +66,7 @@ export default HomeView = (props) => {
                     <TouchableOpacity underlayColor='#fff' onPress={() => {
                         this.store.bounce(500); 
                         navigation.navigate('GameStore',{navigation:navigation})
-                    }}>
+                        }}>
                         <Animatable.View 
                         style={styles.iconButton}
                         ref={(ref)=>{this.store = ref}}
@@ -77,9 +77,13 @@ export default HomeView = (props) => {
                 </Animatable.View>
                 {/* language */}
                 <Animatable.View animation={"slideInRight"} iterationCount={1} duration={1250}>
-                    <TouchableOpacity underlayColor='#fff' onPress={()=>{Toast.show('Sorry, not available in this version');}} >
+                    <TouchableOpacity underlayColor='#fff' onPress={() => {
+                        this.boardGameRef.shake(400); 
+                        navigation.navigate('BoardGame',{navigation:navigation})
+                        }}>
                         <Animatable.View 
                         style={styles.iconButton}
+                        ref={(ref)=>{this.boardGameRef = ref}}
                         >
                         <Ionicons name={'md-globe'} size={40} color={appColors.lionColorDark}/>
                         </Animatable.View>

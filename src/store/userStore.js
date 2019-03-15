@@ -17,6 +17,8 @@ export class userStore {
       totalPay:0,
     },
     questionsHistory: null,
+    name: '',
+    avatar: null,
   }
   
   @observable sound = true
@@ -29,6 +31,10 @@ export class userStore {
 
   @computed get getUserLevels(){
     return this.user.userLevels
+  }
+
+  @computed  get getAllUsers(){
+    return  firebase.database().ref('users/').once('value', snapshot =>  snapshot.val())
   }
 
   @action initializeLevel = async(levelNumber,levelTime) => {
@@ -116,6 +122,10 @@ export class userStore {
       else{
         exist = false
         this.user.appId= appId
+        this.user.name = Math.random().toString(36).substring(2, 6)
+        const adorableAvatarsAPI = 'https://api.adorable.io/avatars/'
+        const avatarSize = 50;
+        this.user.avatar = adorableAvatarsAPI + avatarSize + '/' + this.user.name + ".png";
         try{
           this.user.currentLocale = await Expo.DangerZone.Localization.getCurrentLocaleAsync()
           let PreferredLocales = await Expo.DangerZone.Localization.getPreferredLocalesAsync() || []
@@ -128,6 +138,18 @@ export class userStore {
       }
     })
     return exist 
+  }
+
+  @action setAvatarsAndName = async(userId) => {
+    const name = Math.random().toString(36).substring(2, 6)
+    const adorableAvatarsAPI = 'https://api.adorable.io/avatars/'
+    const avatarSize = 50;
+    const avatar = adorableAvatarsAPI + avatarSize + '/' + name + ".png";
+    let newData = {
+      name,
+      avatar
+    }
+    await firebase.database().ref('users').child(userId).update(newData)
   }
 
   @action async updateNotificationsSetting(){
@@ -145,6 +167,8 @@ export class userStore {
     this.user = Object.assign(this.user, newData);
     await firebase.database().ref('users').child(this.user.appId).update(newData)
   }
+
+
 }
 
 export default new userStore
