@@ -77,13 +77,14 @@ export default HomeView = (props) => {
                 </Animatable.View>
                 {/* language */}
                 <Animatable.View animation={"slideInRight"} iterationCount={1} duration={1250}>
-                    <TouchableOpacity underlayColor='#fff' onPress={() => { navigation.navigate('BoardGame',{navigation:navigation}) }}>
-                        <Animatable.View 
-                        style={styles.iconButton}
-                        >
-                        <Ionicons name={'md-trophy'} size={40} color={appColors.lionOrange}/>
-                        </Animatable.View>
-                    </TouchableOpacity>
+                    <React.Fragment>
+                        <Text style={styles.newLabel}>New!</Text>
+                        <TouchableOpacity underlayColor='#fff' onPress={() => { navigation.navigate('BoardGame',{navigation:navigation}) }}>
+                            <View style={styles.iconButton}>
+                                <Ionicons name={'md-trophy'} size={40} color={appColors.lionColorDark}/>
+                            </View>
+                        </TouchableOpacity>
+                    </React.Fragment>
                 </Animatable.View>
             </View>
             <AdBanner/>

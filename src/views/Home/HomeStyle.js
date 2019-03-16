@@ -61,4 +61,18 @@ export default (styles = StyleSheet.create({
     borderRadius: 37,
     alignSelf: "center"
   },
+  newLabel:{
+    position: 'absolute',
+    fontFamily: "Denk One",
+    fontSize: 12,
+    paddingHorizontal: 4,
+    paddingVertical: 1,
+    color: appColors.lionOrangeDark,
+    backgroundColor: '#000',
+    borderColor: appColors.lionOrangeDark,
+    borderWidth: 1,
+    borderRadius: 5,
+    zIndex: 1,
+    right: 0,
+  },
 }));
