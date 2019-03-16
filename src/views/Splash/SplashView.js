@@ -5,7 +5,7 @@ import * as Progress from 'react-native-progress';
 import {appColors} from '../colors'
 import * as Animatable from 'react-native-animatable';
 const { width, height } = Dimensions.get("screen");
-const VERSION = '1.0.2'
+const VERSION = '1.0.3'
 
 export default class SplashScreen extends React.Component {
 
