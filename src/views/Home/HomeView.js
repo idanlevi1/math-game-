@@ -77,15 +77,11 @@ export default HomeView = (props) => {
                 </Animatable.View>
                 {/* language */}
                 <Animatable.View animation={"slideInRight"} iterationCount={1} duration={1250}>
-                    <TouchableOpacity underlayColor='#fff' onPress={() => {
-                        this.boardGameRef.shake(400); 
-                        navigation.navigate('BoardGame',{navigation:navigation})
-                        }}>
+                    <TouchableOpacity underlayColor='#fff' onPress={() => { navigation.navigate('BoardGame',{navigation:navigation}) }}>
                         <Animatable.View 
                         style={styles.iconButton}
-                        ref={(ref)=>{this.boardGameRef = ref}}
                         >
-                        <Ionicons name={'md-globe'} size={40} color={appColors.lionColorDark}/>
+                        <Ionicons name={'md-trophy'} size={40} color={appColors.lionOrange}/>
                         </Animatable.View>
                     </TouchableOpacity>
                 </Animatable.View>
