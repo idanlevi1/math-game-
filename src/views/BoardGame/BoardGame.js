@@ -8,7 +8,8 @@ class BoardGame extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usersData: []
+      usersData: [],
+      currentUser: null
     };
   }
 
@@ -23,8 +24,11 @@ class BoardGame extends React.Component {
   getUserDataList = allUsers => {
     return Object.keys(allUsers).map(key => {
       const { stars, coins, userLevels, avatar, name } = allUsers[key];
+      if (key === this.props.userStore.getUser.appId) {
+        this.setState({ currentUser: allUsers[key] });
+      }
       return {
-        currentUser: key === this.props.userStore.getUser.appId,
+        appId: key,
         stars,
         coins,
         name,
@@ -35,13 +39,24 @@ class BoardGame extends React.Component {
   };
 
   sortUsersByStars = usersData => {
-    return usersData.sort((a, b) => b.stars - a.stars);
+    return usersData.sort((a, b) => {
+      const starsRes = b.stars - a.stars;
+      if (starsRes === 0) {
+        const userLevels = b.userLevels - a.userLevels;
+        if (userLevels === 0) {
+          return b.coins - a.coins;
+        }
+        return userLevels;
+      }
+      return starsRes;
+    });
   };
 
   render() {
     return (
       <BoardGameView
         usersData={this.state.usersData}
+        currentUser={this.state.currentUser}
         navigation={this.props.navigation}
       />
     );
